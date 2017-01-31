@@ -128,15 +128,15 @@ public class Main
         flag = objectinputstream.readBoolean();
 		if(flag)
 		{
-			paramif pif = new paramif();
-			pif._fld02CA = objectinputstream.readUTF();
-			pif._fld02CB = objectinputstream.readUTF();
-			pif._fld02CE = (String[])objectinputstream.readObject();
+			paramif paramif = new paramif();
+			paramif._fld02CA = objectinputstream.readUTF();
+			paramif._fld02CB = objectinputstream.readUTF();
+			paramif._fld02CE = (String[])objectinputstream.readObject();
 		}
         objectinputstream.close();
 		fileIn.close();
 
-        //_cls02CA cls = new _cls02CA(af, aword0, aword1, avertexattribute, pif);
+        //_cls02CA cls = new _cls02CA(af, aword0, aword1, avertexattribute, paramif);
 
         // for(i = 0; i < af.length; i++)
 		// {
