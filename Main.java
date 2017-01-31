@@ -88,7 +88,7 @@ public class Main
 
 	public static void main(String [] args) throws Exception
 	{
-		String s = "portalKeyResourceUnit.obj";
+		String s = "powerCubeResource.obj";
 
 		FileInputStream fileIn;
         //InputStream inputstream = aq._mth02CF(s);
