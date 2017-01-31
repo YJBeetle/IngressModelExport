@@ -179,12 +179,10 @@ public class Main
 			System.out.println("vt " + af[i*5+3] + " " + af[i*5+4]);
 		}
 
-		int x = 3;
-		for(i = 0; i < (aword0.length/x); i++)
+		for(i = 0; i < (aword0.length/3); i++)
 		{
-			System.out.println("f " + aword0[i*x] + " " + aword0[i*x+1] + " " + aword0[i*x+2]);
+			System.out.println("f " + (aword0[i*3]+1) + " " + (aword0[i*3+1]+1) + " " + (aword0[i*3+2]+1));
 		}
-		// System.out.println("f 1 2 3");
 
 
 		return;
