@@ -31,7 +31,7 @@ public class Main
 		}
 	}
 
-	public static final class _cls02CA
+	public static final class param
 	{
 //		public final int paramArrayOfVertexAttribute16;
 //		private final int vertexSizef4;
@@ -42,7 +42,7 @@ public class Main
 //		public final VertexAttributes paramArrayOfVertexAttribute;
 		public final paramif paramif;
 		
-		_cls02CA(float[] paramArrayOfFloat, short[] paramArrayOfShort1, short[] paramArrayOfShort2, VertexAttribute[] paramArrayOfVertexAttribute, paramif paramif)
+		param(float[] paramArrayOfFloat, short[] paramArrayOfShort1, short[] paramArrayOfShort2, VertexAttribute[] paramArrayOfVertexAttribute, paramif paramif)
 		{
 			this.paramArrayOfFloat = paramArrayOfFloat;
 			this.paramArrayOfShort1 = paramArrayOfShort1;
@@ -136,7 +136,7 @@ public class Main
         objectinputstream.close();
 		fileIn.close();
 
-        //_cls02CA cls = new _cls02CA(af, aword0, aword1, avertexattribute, paramif);
+        //param cls = new param(af, aword0, aword1, avertexattribute, paramif);
 
 		System.out.println("== af ==");
         for(i = 0; i < af.length; i++)
