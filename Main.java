@@ -31,6 +31,61 @@ public class Main
 		}
 	}
 
+	public static final class _cls02CA
+	{
+//		public final int paramArrayOfVertexAttribute16;
+//		private final int vertexSizef4;
+//		private final int paramArrayOfVertexAttribute1;
+		public final float[] paramArrayOfFloat;
+		public final short[] paramArrayOfShort1;
+		public final short[] paramArrayOfShort2;
+//		public final VertexAttributes paramArrayOfVertexAttribute;
+		public final paramif paramif;
+		
+		_cls02CA(float[] paramArrayOfFloat, short[] paramArrayOfShort1, short[] paramArrayOfShort2, VertexAttribute[] paramArrayOfVertexAttribute, paramif paramif)
+		{
+			this.paramArrayOfFloat = paramArrayOfFloat;
+			this.paramArrayOfShort1 = paramArrayOfShort1;
+			this.paramArrayOfShort2 = paramArrayOfShort2;
+	//		this.paramArrayOfVertexAttribute = new VertexAttributes(paramArrayOfVertexAttribute);
+			this.paramif = paramif;
+	//		this.vertexSizef4 = (this.paramArrayOfVertexAttribute.vertexSize / 4);
+	//		this.paramArrayOfVertexAttribute1 = gp.ˊ(this.paramArrayOfVertexAttribute, 1);
+	//		this.paramArrayOfVertexAttribute16 = gp.ˊ(this.paramArrayOfVertexAttribute, 16);
+		}
+		
+		// public final Vector2 _cls02CA(short paramShort, Vector2 paramVector2)
+		// {
+		// 	int i;
+		// 	if (this.paramArrayOfVertexAttribute16 != -1) {
+		// 		i = 1;
+		// 	} else {
+		// 		i = 0;
+		// 	}
+		// 	if (i == 0) {
+		// 		throw new IllegalStateException(String.valueOf("Mesh does not have texture coord data"));
+		// 	}
+		// 	paramShort = this.vertexSizef4 * paramShort + this.paramArrayOfVertexAttribute16;
+		// 	return paramVector2.set(this.paramArrayOfFloat[(paramShort + 0)], this.paramArrayOfFloat[(paramShort + 1)]);
+		// }
+		
+		// public final Vector3 _cls02CA(short paramShort, Vector3 paramVector3)
+		// {
+		// 	int i;
+		// 	if (this.paramArrayOfVertexAttribute1 != -1) {
+		// 		i = 1;
+		// 	} else {
+		// 		i = 0;
+		// 	}
+		// 	if (i == 0) {
+		// 		throw new IllegalStateException(String.valueOf("Mesh does not have position data"));
+		// 	}
+		// 	paramShort = this.vertexSizef4 * paramShort + this.paramArrayOfVertexAttribute1;
+		// 	return paramVector3.set(this.paramArrayOfFloat[(paramShort + 0)], this.paramArrayOfFloat[(paramShort + 1)], this.paramArrayOfFloat[(paramShort + 2)]);
+		// }
+	}
+
+
 	public static void main(String [] args) throws Exception
 	{
 		String s = "portalKeyResourceUnit.obj";
@@ -74,7 +129,7 @@ public class Main
         pif._fld02CB = objectinputstream.readUTF();
         //pif._fld02CE = (String[])objectinputstream.readObject();
         objectinputstream.close();
-        //cls = new _cls02CA(af, aword0, aword1, avertexattribute, pif);
+        _cls02CA cls = new _cls02CA(af, aword0, aword1, avertexattribute, pif);
         try
         {
             objectinputstream.close();
