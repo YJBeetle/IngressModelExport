@@ -138,11 +138,31 @@ public class Main
 
         //_cls02CA cls = new _cls02CA(af, aword0, aword1, avertexattribute, paramif);
 
-        // for(i = 0; i < af.length; i++)
-		// {
-		// 	System.out.println(af[i]);
-		// }
+		System.out.println("== af ==");
+        for(i = 0; i < af.length; i++)
+		{
+			System.out.println(af[i]);
+		}
 
+		System.out.println("== aword0 ==");
+		for(i = 0; i < aword0.length; i++)
+		{
+			System.out.println(aword0[i]);
+		}
+
+		System.out.println("== aword1 ==");
+		for(i = 0; i < aword1.length; i++)
+		{
+			System.out.println(aword1[i]);
+		}
+
+		System.out.println("== avertexattribute ==");
+		for(i = 0; i < avertexattribute.length; i++)
+		{
+			System.out.println("usage = " + avertexattribute[i].usage + " ; numComponents = " + avertexattribute[i].numComponents + " ; alias = " + avertexattribute[i].alias);
+		}
+
+		System.out.println("== count ==");
 		System.out.println("af.length = " + af.length);
 		System.out.println("aword0.length = " + aword0.length);
 		System.out.println("aword1.length = " + aword1.length);
