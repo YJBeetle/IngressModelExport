@@ -138,37 +138,51 @@ public class Main
 
         //param cls = new param(af, aword0, aword1, avertexattribute, paramif);
 
-		System.out.println("== af ==");
-        for(i = 0; i < af.length; i++)
-		{
-			System.out.println(af[i]);
-		}
+		// System.out.println("== af ==");
+        // for(i = 0; i < af.length; i++)
+		// {
+		// 	System.out.println(af[i]);
+		// }
 
-		System.out.println("== aword0 ==");
-		for(i = 0; i < aword0.length; i++)
-		{
-			System.out.println(aword0[i]);
-		}
+		// System.out.println("== aword0 ==");
+		// for(i = 0; i < aword0.length; i++)
+		// {
+		// 	System.out.println(aword0[i]);
+		// }
 
-		System.out.println("== aword1 ==");
-		for(i = 0; i < aword1.length; i++)
-		{
-			System.out.println(aword1[i]);
-		}
+		// System.out.println("== aword1 ==");
+		// for(i = 0; i < aword1.length; i++)
+		// {
+		// 	System.out.println(aword1[i]);
+		// }
 
-		System.out.println("== avertexattribute ==");
-		for(i = 0; i < avertexattribute.length; i++)
-		{
-			System.out.println("usage = " + avertexattribute[i].usage + " ; numComponents = " + avertexattribute[i].numComponents + " ; alias = " + avertexattribute[i].alias);
-		}
+		// System.out.println("== avertexattribute ==");
+		// for(i = 0; i < avertexattribute.length; i++)
+		// {
+		// 	System.out.println("usage = " + avertexattribute[i].usage + " ; numComponents = " + avertexattribute[i].numComponents + " ; alias = " + avertexattribute[i].alias);
+		// }
 
-		System.out.println("== count ==");
-		System.out.println("af.length = " + af.length);
-		System.out.println("aword0.length = " + aword0.length);
-		System.out.println("aword1.length = " + aword1.length);
-		System.out.println("avertexattribute.length = " + avertexattribute.length);
-		System.out.println("end...");
+		// System.out.println("== count ==");
+		// System.out.println("af.length = " + af.length);
+		// System.out.println("aword0.length = " + aword0.length);
+		// System.out.println("aword1.length = " + aword1.length);
+		// System.out.println("avertexattribute.length = " + avertexattribute.length);
+		// System.out.println("end...");
 		
+		int x = 5;
+		for(i = 0; i < (af.length/x); i++)
+		{
+			System.out.println("v " + af[i*x] + " " + af[i*x+1] + " " + af[i*x+2]);
+		}
+
+		x = 3;
+		for(i = 0; i < (aword0.length/x); i++)
+		{
+			System.out.println("f " + aword0[i*x] + " " + aword0[i*x+1] + " " + aword0[i*x+2]);
+		}
+		// System.out.println("f 1 2 3");
+
+
 		return;
 
 
