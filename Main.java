@@ -88,7 +88,8 @@ public class Main
 
 	public static void main(String [] args) throws Exception
 	{
-		String s = "powerCubeResource.obj";
+		//String s = "powerCubeResource.obj";
+		String s = args[0];
 
 		FileInputStream fileIn;
         //InputStream inputstream = aq._mth02CF(s);
@@ -169,11 +170,13 @@ public class Main
 		// System.out.println("avertexattribute.length = " + avertexattribute.length);
 		// System.out.println("end...");
 		
-		int x = 5;
-		for(i = 0; i < (af.length/x); i++)
+		for(i = 0; i < (af.length/5); i++)
 		{
-			System.out.println("v " + af[i*x] + " " + af[i*x+1] + " " + af[i*x+2]);
-			System.out.println("vt " + af[i*x+3] + " " + af[i*x+4]);
+			System.out.println("v " + af[i*5] + " " + af[i*5+1] + " " + af[i*5+2]);
+		}
+		for(i = 0; i < (af.length/5); i++)
+		{
+			System.out.println("vt " + af[i*5+3] + " " + af[i*5+4]);
 		}
 
 		x = 3;
