@@ -54,7 +54,7 @@ public class Main
 	//		this.paramArrayOfVertexAttribute16 = gp.ˊ(this.paramArrayOfVertexAttribute, 16);
 		}
 		
-		// public final Vector2 _cls02CA(short paramShort, Vector2 paramVector2)
+		// public final Vector2 V2(short paramShort, Vector2 paramVector2)
 		// {
 		// 	int i;
 		// 	if (this.paramArrayOfVertexAttribute16 != -1) {
@@ -69,7 +69,7 @@ public class Main
 		// 	return paramVector2.set(this.paramArrayOfFloat[(paramShort + 0)], this.paramArrayOfFloat[(paramShort + 1)]);
 		// }
 		
-		// public final Vector3 _cls02CA(short paramShort, Vector3 paramVector3)
+		// public final Vector3 V3(short paramShort, Vector3 paramVector3)
 		// {
 		// 	int i;
 		// 	if (this.paramArrayOfVertexAttribute1 != -1) {
