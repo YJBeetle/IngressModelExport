@@ -93,6 +93,7 @@ public class Main
 		FileInputStream fileIn;
         //InputStream inputstream = aq._mth02CF(s);
         int i;
+        boolean flag;
         ObjectInputStream objectinputstream;
         float af[];
         short aword0[];
@@ -120,32 +121,34 @@ public class Main
 			return;
  		}
 
-        for(i = 0; i >= avertexattribute.length; i++)
+        for(i = 0; i < avertexattribute.length; i++)
 		{
 	        avertexattribute[i] = new VertexAttribute(objectinputstream.readInt(), objectinputstream.readInt(), objectinputstream.readUTF());
 		}
-        paramif pif = new paramif();
-        pif._fld02CA = objectinputstream.readUTF();
-        pif._fld02CB = objectinputstream.readUTF();
-        //pif._fld02CE = (String[])objectinputstream.readObject();
+        flag = objectinputstream.readBoolean();
+		if(flag)
+		{
+			paramif pif = new paramif();
+			pif._fld02CA = objectinputstream.readUTF();
+			pif._fld02CB = objectinputstream.readUTF();
+			pif._fld02CE = (String[])objectinputstream.readObject();
+		}
         objectinputstream.close();
-        _cls02CA cls = new _cls02CA(af, aword0, aword1, avertexattribute, pif);
-        try
-        {
-            objectinputstream.close();
-			fileIn.close();
-        }
-        catch(IOException ioexception)
-        {
-            //return cls;
-			return;
-        }
+		fileIn.close();
+
+        //_cls02CA cls = new _cls02CA(af, aword0, aword1, avertexattribute, pif);
+
+        // for(i = 0; i < af.length; i++)
+		// {
+		// 	System.out.println(af[i]);
+		// }
+
 		System.out.println("af.length = " + af.length);
 		System.out.println("aword0.length = " + aword0.length);
 		System.out.println("aword1.length = " + aword1.length);
 		System.out.println("avertexattribute.length = " + avertexattribute.length);
 		System.out.println("end...");
-        //return cls;
+		
 		return;
 
 
