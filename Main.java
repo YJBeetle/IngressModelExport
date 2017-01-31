@@ -173,6 +173,7 @@ public class Main
 		for(i = 0; i < (af.length/x); i++)
 		{
 			System.out.println("v " + af[i*x] + " " + af[i*x+1] + " " + af[i*x+2]);
+			System.out.println("vt " + af[i*x+3] + " " + af[i*x+4]);
 		}
 
 		x = 3;
