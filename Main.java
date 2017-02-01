@@ -181,11 +181,11 @@ public class Main
 			System.out.println("vt " + af[i*5+3] + " " + af[i*5+4]);
 		}
 
-		// System.out.println("#f");
-		// for(i = 0; i < (aword0.length/3); i++)
-		// {
-		// 	System.out.println("f " + (aword0[i*3]+1) + " " + (aword0[i*3+1]+1) + " " + (aword0[i*3+2]+1));
-		// }
+		System.out.println("#f");
+		for(i = 0; i < (aword0.length/3); i++)
+		{
+			System.out.println("f " + (aword0[i*3]+1) + " " + (aword0[i*3+1]+1) + " " + (aword0[i*3+2]+1));
+		}
 		System.out.println("#l");
 		for(i = 0; i < (aword1.length/2); i++)
 		{
