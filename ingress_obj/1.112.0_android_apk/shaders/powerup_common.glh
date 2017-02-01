@@ -1,0 +1,27 @@
+#define PI 3.1415926535897932384626433832795
+
+uniform sampler2D u_texture;
+uniform sampler2D u_texture2;
+
+uniform mat4 u_modelViewProject;
+uniform float u_flicker; 
+
+varying vec2 v_texCoord0;
+varying vec4 v_texCoord0And1; 
+
+#ifdef FRAGMENT
+vec4 getPowerupColor() {
+  /* tex.b contains the channel describing the shield pulse animation and its direction.
+   * tex.a contains the "default-state" shield alpha channel information.
+   * The shield mitigation lerps between tex.r and tex.g, going from low to high mitigation.
+   * The pulse and the alpha channel is shaped to achieve a glass-like visual effect.
+   */
+  vec4 tex = texture2D(u_texture, v_texCoord0And1.xy);
+  vec4 tex2 = texture2D(u_texture2, v_texCoord0And1.zw);
+  
+  vec3 outColor = tex.rgb;
+  outColor.rb += vec2(tex2.r * 1.5);  	
+  float alpha = tex.a * u_flicker;
+  return vec4(outColor, alpha);
+}
+#endif

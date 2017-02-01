@@ -1,0 +1,20 @@
+info face="Coda" size=102 bold=0 italic=0 charset="" unicode=0 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=0,0
+common lineHeight=145 base=106 scaleW=248 scaleH=349 pages=1 packed=0
+page id=0 file="coda-outline-orange-med.png"
+chars count=16
+char id=32     x=147   y=263   width=0     height=0     xoffset=0     yoffset=106   xadvance=20    page=0  chnl=0  letter="space"
+char id=33     x=110   y=0     width=22    height=89    xoffset=7     yoffset=17    xadvance=25    page=0  chnl=0  letter="!"
+char id=37     x=0     y=0     width=110   height=90    xoffset=6     yoffset=16    xadvance=110   page=0  chnl=0  letter="%"
+char id=45     x=106   y=263   width=41    height=18    xoffset=7     yoffset=61    xadvance=42    page=0  chnl=0  letter="-"
+char id=48     x=132   y=0     width=62    height=87    xoffset=6     yoffset=20    xadvance=63    page=0  chnl=0  letter="0"
+char id=49     x=0     y=263   width=30    height=85    xoffset=2     yoffset=21    xadvance=29    page=0  chnl=0  letter="1"
+char id=50     x=59    y=177   width=55    height=86    xoffset=5     yoffset=20    xadvance=55    page=0  chnl=0  letter="2"
+char id=51     x=183   y=90    width=57    height=87    xoffset=4     yoffset=20    xadvance=56    page=0  chnl=0  letter="3"
+char id=52     x=114   y=177   width=59    height=85    xoffset=2     yoffset=21    xadvance=53    page=0  chnl=0  letter="4"
+char id=53     x=0     y=177   width=59    height=86    xoffset=7     yoffset=21    xadvance=60    page=0  chnl=0  letter="5"
+char id=54     x=0     y=90    width=62    height=87    xoffset=7     yoffset=20    xadvance=62    page=0  chnl=0  letter="6"
+char id=55     x=173   y=177   width=49    height=85    xoffset=2     yoffset=21    xadvance=42    page=0  chnl=0  letter="7"
+char id=56     x=123   y=90    width=60    height=87    xoffset=7     yoffset=20    xadvance=61    page=0  chnl=0  letter="8"
+char id=57     x=62    y=90    width=61    height=87    xoffset=6     yoffset=19    xadvance=62    page=0  chnl=0  letter="9"
+char id=58     x=30    y=263   width=25    height=66    xoffset=7     yoffset=33    xadvance=27    page=0  chnl=0  letter=":"
+char id=173    x=55    y=263   width=51    height=20    xoffset=7     yoffset=59    xadvance=52    page=0  chnl=0  letter="­"

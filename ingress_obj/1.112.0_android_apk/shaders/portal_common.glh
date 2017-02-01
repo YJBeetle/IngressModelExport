@@ -1,0 +1,39 @@
+// Common portal shader code
+#ifdef VERTEX
+uniform float u_rotation;
+#endif
+
+#ifdef FRAGMENT
+uniform sampler2D u_texture;
+uniform float u_rampTarget;
+uniform float u_alpha;
+#endif
+
+#ifdef VERTEX
+/* 2d rotation in the XZ plane */
+vec3 rotateXZ(vec3 position, float radians) {
+  float s = sin(radians);
+  float c = cos(radians);
+  mat2 rotation = mat2(c, -s, s, c);
+  return vec3(rotation * position.xz, position.y).xzy;
+}
+#endif
+
+#ifdef FRAGMENT
+// The portal fragment shader uses a RGBA texture to define the
+// animation pattern of a portal's pulsing glow and color variation.
+// The texture's red channel contains the ramp
+// defining the glow's pattern. The green channel contains the ramp fall-off pattern (c_max) to
+// slightly limit the glow's outward radiation. The time-derived,
+// v-shaped glow factor (t) mixed with c_max and multiplied into the base texture.
+// The blue/alpha channels define the color and alpha of the texture.
+// The return color should be multiplied by the team color.
+vec4 computePortalColor(vec2 texCoords) {
+  vec4 tex = texture2D(u_texture, texCoords);
+  /* Computes a falloff pulse based on the current center and width. */
+  float t = 1.0 - min(1.0, abs(tex.r - u_rampTarget) * 5.0);
+  float c_max = tex.g;
+  return vec4(tex.bbb * (1.3 + c_max * t), tex.a * u_alpha);
+}
+
+#endif

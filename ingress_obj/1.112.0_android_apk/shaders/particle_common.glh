@@ -1,0 +1,42 @@
+// Common particle code for systems based on DisposableParticleVisuals.
+#define PI 3.1415926535897932384626433832795
+
+#ifdef VERTEX
+uniform mat4 u_modelViewProject;
+uniform vec3 u_cameraPos;
+
+attribute vec3 a_position;   // center of the particle shifted w/r/t system center
+attribute vec2 a_texCoord0;  // the texture coordinate also provides vertex offsets
+attribute float a_scale;     // size of each particle
+#endif
+
+varying vec2 v_texCoord0;
+varying vec4 v_color;
+const vec3 y_hat = vec3(0.0, 1.0, 0.0);
+
+#ifdef VERTEX
+vec3 buildBillboardOffset(vec3 particle_position, float camScale) {
+  vec3 camVec = normalize(particle_position - u_cameraPos);
+
+  // get billboard coordinate system
+  vec3 right = cross(camVec, y_hat);
+  vec3 up = cross(right, camVec);
+
+  // adjust right and up vectors for scale
+  vec2 scales = a_scale * (a_texCoord0.xy - vec2(0.5)) * camScale;
+  right = right * scales.x;
+  up = up * scales.y;
+
+  v_texCoord0 = a_texCoord0;
+  return up + right;
+}
+#endif
+
+#ifdef FRAGMENT
+uniform sampler2D u_texture;
+
+vec4 defaultParticleFragment() {
+  vec4 texture = texture2D(u_texture, v_texCoord0);
+  return vec4(v_color.xyz + texture.xxx, (texture.x + texture.z) * v_color.w);
+}
+#endif

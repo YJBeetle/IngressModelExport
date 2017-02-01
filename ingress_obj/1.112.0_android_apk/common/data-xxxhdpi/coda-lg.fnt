@@ -1,0 +1,22 @@
+info face="Coda" size=96 bold=0 italic=0 charset="" unicode=0 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=0,0
+common lineHeight=136 base=100 scaleW=285 scaleH=340 pages=1 packed=0
+page id=0 file="coda-lg.png"
+chars count=18
+char id=32     x=174   y=256   width=0     height=0     xoffset=0     yoffset=106   xadvance=19    page=0  chnl=0  letter="space"
+char id=33     x=106   y=0     width=24    height=86    xoffset=0     yoffset=20    xadvance=23    page=0  chnl=0  letter="!"
+char id=37     x=0     y=0     width=106   height=87    xoffset=0     yoffset=19    xadvance=104   page=0  chnl=0  letter="%"
+char id=45     x=133   y=256   width=41    height=20    xoffset=0     yoffset=61    xadvance=40    page=0  chnl=0  letter="-"
+char id=48     x=130   y=0     width=61    height=85    xoffset=0     yoffset=22    xadvance=59    page=0  chnl=0  letter="0"
+char id=49     x=226   y=172   width=31    height=83    xoffset=-4    yoffset=23    xadvance=27    page=0  chnl=0  letter="1"
+char id=50     x=0     y=172   width=55    height=84    xoffset=-2    yoffset=22    xadvance=51    page=0  chnl=0  letter="2"
+char id=51     x=59    y=87    width=57    height=85    xoffset=-2    yoffset=22    xadvance=53    page=0  chnl=0  letter="3"
+char id=52     x=120   y=172   width=58    height=83    xoffset=-4    yoffset=23    xadvance=50    page=0  chnl=0  letter="4"
+char id=53     x=176   y=87    width=58    height=84    xoffset=1     yoffset=23    xadvance=56    page=0  chnl=0  letter="5"
+char id=54     x=191   y=0     width=61    height=85    xoffset=0     yoffset=22    xadvance=58    page=0  chnl=0  letter="6"
+char id=55     x=178   y=172   width=48    height=83    xoffset=-4    yoffset=23    xadvance=40    page=0  chnl=0  letter="7"
+char id=56     x=0     y=87    width=59    height=85    xoffset=1     yoffset=22    xadvance=57    page=0  chnl=0  letter="8"
+char id=57     x=116   y=87    width=60    height=84    xoffset=0     yoffset=22    xadvance=59    page=0  chnl=0  letter="9"
+char id=58     x=56    y=256   width=27    height=65    xoffset=0     yoffset=35    xadvance=25    page=0  chnl=0  letter=":"
+char id=88     x=55    y=172   width=65    height=83    xoffset=-4    yoffset=23    xadvance=56    page=0  chnl=0  letter="X"
+char id=120    x=0     y=256   width=56    height=65    xoffset=-3    yoffset=41    xadvance=47    page=0  chnl=0  letter="x"
+char id=173    x=83    y=256   width=50    height=22    xoffset=0     yoffset=58    xadvance=49    page=0  chnl=0  letter="­"

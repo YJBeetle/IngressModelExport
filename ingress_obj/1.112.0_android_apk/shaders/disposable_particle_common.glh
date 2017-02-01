@@ -1,0 +1,8 @@
+#include "particle_common.glh"
+
+#ifdef VERTEX
+attribute float a_speed;
+attribute float a_tOffset;
+attribute float a_index;
+#endif
+

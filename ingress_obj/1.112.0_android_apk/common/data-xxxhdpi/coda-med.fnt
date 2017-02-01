@@ -1,0 +1,22 @@
+info face="Coda" size=64 bold=0 italic=0 charset="" unicode=0 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=0,0
+common lineHeight=91 base=66 scaleW=195 scaleH=229 pages=1 packed=0
+page id=0 file="coda-med.png"
+chars count=18
+char id=32     x=118   y=172   width=0     height=0     xoffset=0     yoffset=71    xadvance=12    page=0  chnl=0  letter="space"
+char id=33     x=71    y=0     width=16    height=58    xoffset=0     yoffset=13    xadvance=15    page=0  chnl=0  letter="!"
+char id=37     x=0     y=0     width=71    height=59    xoffset=0     yoffset=12    xadvance=69    page=0  chnl=0  letter="%"
+char id=45     x=90    y=172   width=28    height=14    xoffset=0     yoffset=40    xadvance=26    page=0  chnl=0  letter="-"
+char id=48     x=87    y=0     width=41    height=57    xoffset=0     yoffset=15    xadvance=39    page=0  chnl=0  letter="0"
+char id=49     x=148   y=116   width=21    height=56    xoffset=-3    yoffset=15    xadvance=18    page=0  chnl=0  letter="1"
+char id=50     x=78    y=116   width=37    height=56    xoffset=-1    yoffset=15    xadvance=34    page=0  chnl=0  letter="2"
+char id=51     x=81    y=59    width=38    height=57    xoffset=-2    yoffset=15    xadvance=35    page=0  chnl=0  letter="3"
+char id=52     x=0     y=116   width=39    height=56    xoffset=-3    yoffset=15    xadvance=33    page=0  chnl=0  letter="4"
+char id=53     x=39    y=116   width=39    height=56    xoffset=1     yoffset=16    xadvance=37    page=0  chnl=0  letter="5"
+char id=54     x=128   y=0     width=41    height=57    xoffset=0     yoffset=15    xadvance=39    page=0  chnl=0  letter="6"
+char id=55     x=115   y=116   width=33    height=56    xoffset=-3    yoffset=15    xadvance=26    page=0  chnl=0  letter="7"
+char id=56     x=41    y=59    width=40    height=57    xoffset=1     yoffset=15    xadvance=38    page=0  chnl=0  letter="8"
+char id=57     x=0     y=59    width=41    height=57    xoffset=0     yoffset=14    xadvance=39    page=0  chnl=0  letter="9"
+char id=58     x=38    y=172   width=18    height=44    xoffset=0     yoffset=23    xadvance=17    page=0  chnl=0  letter=":"
+char id=88     x=119   y=59    width=44    height=56    xoffset=-2    yoffset=15    xadvance=37    page=0  chnl=0  letter="X"
+char id=120    x=0     y=172   width=38    height=44    xoffset=-2    yoffset=27    xadvance=32    page=0  chnl=0  letter="x"
+char id=173    x=56    y=172   width=34    height=15    xoffset=0     yoffset=39    xadvance=33    page=0  chnl=0  letter="­"

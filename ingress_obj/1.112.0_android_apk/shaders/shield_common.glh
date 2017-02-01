@@ -1,0 +1,38 @@
+#define PI 3.1415926535897932384626433832795
+
+uniform sampler2D u_texture;
+
+uniform vec4 u_color;
+uniform vec2 u_rampTargetInvWidth;
+uniform vec3 u_contributionsAndAlpha; // low,high tex contribution, alpha
+
+uniform mat4 u_modelViewProject;
+
+varying vec2 v_texCoord0;
+
+const float wavefrontRadius = 0.3;
+const float peelRadius = 0.15;
+const vec4 redTint = vec4(0.93, 0.11, 0.14, 0.6);
+const vec4 peelColor = vec4(1.0, 1.0, 1.0, 1.0);
+
+#ifdef FRAGMENT
+vec4 getShieldColor(vec3 shieldColor) {
+  /* tex.b contains the channel describing the shield pulse animation and its direction.
+   * tex.a contains the "default-state" shield alpha channel information.
+   * The shield mitigation lerps between tex.r and tex.g, going from low to high mitigation.
+   * The pulse and the alpha channel is shaped to achieve a glass-like visual effect.
+   */
+  float rampTarget = u_rampTargetInvWidth.x;
+  float rampWidth = u_rampTargetInvWidth.y;
+  vec4 tex = texture2D(u_texture, v_texCoord0);
+  float levelMultiplier = dot(u_contributionsAndAlpha.xy, tex.rg);
+  /* Given a gradient, computes a falloff pulse based on the current center. */
+  float x = (tex.b - rampTarget) * rampWidth;
+  float t = min(1.0, abs(x));
+
+  const float opacityOffset = 0.35;
+  vec3 outColor = vec3(shieldColor * (tex.a + 0.75));
+  float alpha = (t > 0.5) ? tex.a : (t + opacityOffset) * levelMultiplier;
+  return vec4(outColor, alpha);
+}
+#endif
