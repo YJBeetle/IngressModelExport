@@ -1,6 +1,8 @@
 # IngressModelExport
 该代码用于导出ingress中的模型
 
+![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/xmp/out.png)
+
 起因是我想做一个短片，使用Ae合成手拿INGRESS道具的效果。
 
 第一反映就是去游戏中提取，没想到看似obj拓展名的文件实际上file结果为『Java serialization data, version 5』
@@ -21,9 +23,6 @@ java Main ingress_obj/1.112.0_android_apk/scanner/interestCapsuleResource.obj > 
 ![](https://github.com/YJBeetle/ingress_obj_reader/raw/master/demo/img/E948CD1C-4024-4F32-AB03-137156229EB5.png)
 
 ![](https://github.com/YJBeetle/ingress_obj_reader/raw/master/demo/img/F1DA3AB1-2EEB-420C-BAFB-03A8A5EF653C.png)
-
-##某渲染出效果：
-![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/xmp/out.png)
 
 ##某中间痛苦猜结构过程：
 先是吧顶点数据全部塞进去效果如图
