@@ -47,7 +47,7 @@ java Main ingress_obj/1.112.0_android_apk/scanner/interestCapsuleResource.obj > 
 猜对了
 
 ##某无聊的截图：
-为何有这么多人好奇脚的模型啥样子……
+为何有这么多人好奇脚的模型啥样子……（你们都是脚控么？）
 
 ![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/img/5C207686-18BA-4011-8255-BB5143467696.png)
 
@@ -67,7 +67,7 @@ java Main ingress_obj/1.112.0_android_apk/scanner/interestCapsuleResource.obj > 
 
 ![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/img/D4C4829B6796C5E601B470D9CC66BA5F.jpg)
 
-蓝桶（之所以是蓝桶不是红桶……红桶还要画贴图啊！）
+蓝桶（之所以是蓝桶不是红桶……因为红桶还要画贴图）
 
 ![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/img/25CF7876-8CE1-48DE-B6BE-F6B8C30D27D5.png)
 
