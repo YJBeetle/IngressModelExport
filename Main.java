@@ -170,18 +170,28 @@ public class Main
 		// System.out.println("avertexattribute.length = " + avertexattribute.length);
 		// System.out.println("end...");
 		
+		System.out.println("#v");
 		for(i = 0; i < (af.length/5); i++)
 		{
 			System.out.println("v " + af[i*5] + " " + af[i*5+1] + " " + af[i*5+2]);
 		}
+		System.out.println("#vt");
 		for(i = 0; i < (af.length/5); i++)
 		{
 			System.out.println("vt " + af[i*5+3] + " " + af[i*5+4]);
 		}
 
-		for(i = 0; i < (aword0.length/3); i++)
+		// System.out.println("#f");
+		// for(i = 0; i < (aword0.length/3); i++)
+		// {
+		// 	System.out.println("f " + (aword0[i*3]+1) + " " + (aword0[i*3+1]+1) + " " + (aword0[i*3+2]+1));
+		// }
+		System.out.println("#unknow");
+		for(i = 0; i < (aword1.length/4); i++)
 		{
-			System.out.println("f " + (aword0[i*3]+1) + " " + (aword0[i*3+1]+1) + " " + (aword0[i*3+2]+1));
+			// System.out.println("f " + (aword1[i*4]+1) + " " + (aword1[i*4+1]+1) + " " + (aword1[i*4+2]+1) + " " + (aword1[i*4+3]+1));
+			System.out.println("l " + (aword1[i*4]+1) + " " + (aword1[i*4+1]+1));
+			System.out.println("l " + (aword1[i*4+2]+1) + " " + (aword1[i*4+3]+1));
 		}
 
 
