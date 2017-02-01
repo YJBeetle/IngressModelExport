@@ -186,12 +186,10 @@ public class Main
 		// {
 		// 	System.out.println("f " + (aword0[i*3]+1) + " " + (aword0[i*3+1]+1) + " " + (aword0[i*3+2]+1));
 		// }
-		System.out.println("#unknow");
-		for(i = 0; i < (aword1.length/4); i++)
+		System.out.println("#l");
+		for(i = 0; i < (aword1.length/2); i++)
 		{
-			// System.out.println("f " + (aword1[i*4]+1) + " " + (aword1[i*4+1]+1) + " " + (aword1[i*4+2]+1) + " " + (aword1[i*4+3]+1));
-			System.out.println("l " + (aword1[i*4]+1) + " " + (aword1[i*4+1]+1));
-			System.out.println("l " + (aword1[i*4+2]+1) + " " + (aword1[i*4+3]+1));
+			System.out.println("l " + (aword1[i*2]+1) + " " + (aword1[i*2+1]+1));
 		}
 
 
