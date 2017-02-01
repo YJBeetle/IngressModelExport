@@ -61,11 +61,11 @@ java Main ingress_obj/1.112.0_android_apk/scanner/interestCapsuleResource.obj > 
 
 ![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/img/58DFF6CF-2716-449E-B0EA-B4D57E583380.png)
 
-![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/img/794563DE17C3C8E8961BDB2D91DA3F00.png)
+![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/img/794563DE17C3C8E8961BDB2D91DA3F00.jpg)
 
 ![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/img/3CA56725-4AEF-48F5-B823-3766D5BB9556.png)
 
-![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/img/D4C4829B6796C5E601B470D9CC66BA5F.png)
+![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/img/D4C4829B6796C5E601B470D9CC66BA5F.jpg)
 
 蓝桶（之所以是蓝桶不是红桶……红桶还要画贴图啊！）
 
