@@ -1,23 +1,10 @@
 
 import java.io.*;
 import java.util.*;
-
+import java.text.SimpleDateFormat;
 
 public class Main
 {
-
-	public static final class paramif
-	{
-
-		public String _fld02CA;
-		public String _fld02CB;
-		public String _fld02CE[];
-
-		public paramif()
-		{
-		}
-	}
-
 	public static final class VertexAttribute
 	{
 		public final int usage;
@@ -31,68 +18,10 @@ public class Main
 		}
 	}
 
-	public static final class param
-	{
-//		public final int paramArrayOfVertexAttribute16;
-//		private final int vertexSizef4;
-//		private final int paramArrayOfVertexAttribute1;
-		public final float[] paramArrayOfFloat;
-		public final short[] paramArrayOfShort1;
-		public final short[] paramArrayOfShort2;
-//		public final VertexAttributes paramArrayOfVertexAttribute;
-		public final paramif paramif;
-		
-		param(float[] paramArrayOfFloat, short[] paramArrayOfShort1, short[] paramArrayOfShort2, VertexAttribute[] paramArrayOfVertexAttribute, paramif paramif)
-		{
-			this.paramArrayOfFloat = paramArrayOfFloat;
-			this.paramArrayOfShort1 = paramArrayOfShort1;
-			this.paramArrayOfShort2 = paramArrayOfShort2;
-	//		this.paramArrayOfVertexAttribute = new VertexAttributes(paramArrayOfVertexAttribute);
-			this.paramif = paramif;
-	//		this.vertexSizef4 = (this.paramArrayOfVertexAttribute.vertexSize / 4);
-	//		this.paramArrayOfVertexAttribute1 = gp.ˊ(this.paramArrayOfVertexAttribute, 1);
-	//		this.paramArrayOfVertexAttribute16 = gp.ˊ(this.paramArrayOfVertexAttribute, 16);
-		}
-		
-		// public final Vector2 V2(short paramShort, Vector2 paramVector2)
-		// {
-		// 	int i;
-		// 	if (this.paramArrayOfVertexAttribute16 != -1) {
-		// 		i = 1;
-		// 	} else {
-		// 		i = 0;
-		// 	}
-		// 	if (i == 0) {
-		// 		throw new IllegalStateException(String.valueOf("Mesh does not have texture coord data"));
-		// 	}
-		// 	paramShort = this.vertexSizef4 * paramShort + this.paramArrayOfVertexAttribute16;
-		// 	return paramVector2.set(this.paramArrayOfFloat[(paramShort + 0)], this.paramArrayOfFloat[(paramShort + 1)]);
-		// }
-		
-		// public final Vector3 V3(short paramShort, Vector3 paramVector3)
-		// {
-		// 	int i;
-		// 	if (this.paramArrayOfVertexAttribute1 != -1) {
-		// 		i = 1;
-		// 	} else {
-		// 		i = 0;
-		// 	}
-		// 	if (i == 0) {
-		// 		throw new IllegalStateException(String.valueOf("Mesh does not have position data"));
-		// 	}
-		// 	paramShort = this.vertexSizef4 * paramShort + this.paramArrayOfVertexAttribute1;
-		// 	return paramVector3.set(this.paramArrayOfFloat[(paramShort + 0)], this.paramArrayOfFloat[(paramShort + 1)], this.paramArrayOfFloat[(paramShort + 2)]);
-		// }
-	}
-
-
 	public static void main(String [] args) throws Exception
 	{
-		//String s = "powerCubeResource.obj";
-		String s = args[0];
-
+		String fileInPath;
 		FileInputStream fileIn;
-        //InputStream inputstream = aq._mth02CF(s);
         int i;
         boolean flag;
         ObjectInputStream objectinputstream;
@@ -100,11 +29,25 @@ public class Main
         short aword0[];
         short aword1[];
         VertexAttribute avertexattribute[];
+		String _fld02CA;
+		String _fld02CB;
+		String _fld02CE[];
+
         try
         {
-			fileIn = new FileInputStream(s);
+			if(args.length <= 0)
+			{
+				System.out.println("# Create error: No input file");
+				return;
+			}
+			fileInPath = args[0];
+			if(!new File(fileInPath).exists())
+			{
+				System.out.println("# Create error: File does not exist");
+				return;
+			}
+			fileIn = new FileInputStream(fileInPath);
 			objectinputstream = new ObjectInputStream(fileIn);
-            //objectinputstream = new ObjectInputStream(new BufferedInputStream(inputstream));
             af = (float[])objectinputstream.readObject();
             aword0 = (short[])objectinputstream.readObject();
             aword1 = (short[])objectinputstream.readObject();
@@ -127,19 +70,22 @@ public class Main
 	        avertexattribute[i] = new VertexAttribute(objectinputstream.readInt(), objectinputstream.readInt(), objectinputstream.readUTF());
 		}
         flag = objectinputstream.readBoolean();
-		paramif paramif = new paramif();
 		if(flag)
 		{
-			paramif._fld02CA = objectinputstream.readUTF();
-			paramif._fld02CB = objectinputstream.readUTF();
-			paramif._fld02CE = (String[])objectinputstream.readObject();
+			_fld02CA = objectinputstream.readUTF();
+			_fld02CB = objectinputstream.readUTF();
+			_fld02CE = (String[])objectinputstream.readObject();
 		}
         objectinputstream.close();
 		fileIn.close();
-
-        param cls = new param(af, aword0, aword1, avertexattribute, paramif);
 		
-		//输出概览
+		//输出注释
+		System.out.println("# Create by IngressModelExport");
+		System.out.println("# Develop by YJBeetle");
+		System.out.println("# Now time is " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) );
+		System.out.println("");
+
+		//概览
 		System.out.println("# count");
 		System.out.println("# af.length = " + af.length);
 		System.out.println("# aword0.length = " + aword0.length);
@@ -179,7 +125,6 @@ public class Main
 		}
 		System.out.println("");
 
-
 		//未知数据
 		System.out.println("# unknow");
 		System.out.println("# avertexattribute data");
@@ -187,9 +132,9 @@ public class Main
 		{
 			System.out.println("# usage = " + avertexattribute[i].usage + " ; numComponents = " + avertexattribute[i].numComponents + " ; alias = " + avertexattribute[i].alias);
 		}
+		System.out.println("");
 
 		return;
-
 
 	}
 	
