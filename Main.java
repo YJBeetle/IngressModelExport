@@ -127,9 +127,9 @@ public class Main
 	        avertexattribute[i] = new VertexAttribute(objectinputstream.readInt(), objectinputstream.readInt(), objectinputstream.readUTF());
 		}
         flag = objectinputstream.readBoolean();
+		paramif paramif = new paramif();
 		if(flag)
 		{
-			paramif paramif = new paramif();
 			paramif._fld02CA = objectinputstream.readUTF();
 			paramif._fld02CB = objectinputstream.readUTF();
 			paramif._fld02CE = (String[])objectinputstream.readObject();
@@ -137,61 +137,56 @@ public class Main
         objectinputstream.close();
 		fileIn.close();
 
-        //param cls = new param(af, aword0, aword1, avertexattribute, paramif);
-
-		// System.out.println("== af ==");
-        // for(i = 0; i < af.length; i++)
-		// {
-		// 	System.out.println(af[i]);
-		// }
-
-		// System.out.println("== aword0 ==");
-		// for(i = 0; i < aword0.length; i++)
-		// {
-		// 	System.out.println(aword0[i]);
-		// }
-
-		// System.out.println("== aword1 ==");
-		// for(i = 0; i < aword1.length; i++)
-		// {
-		// 	System.out.println(aword1[i]);
-		// }
-
-		// System.out.println("== avertexattribute ==");
-		// for(i = 0; i < avertexattribute.length; i++)
-		// {
-		// 	System.out.println("usage = " + avertexattribute[i].usage + " ; numComponents = " + avertexattribute[i].numComponents + " ; alias = " + avertexattribute[i].alias);
-		// }
-
-		// System.out.println("== count ==");
-		// System.out.println("af.length = " + af.length);
-		// System.out.println("aword0.length = " + aword0.length);
-		// System.out.println("aword1.length = " + aword1.length);
-		// System.out.println("avertexattribute.length = " + avertexattribute.length);
-		// System.out.println("end...");
+        param cls = new param(af, aword0, aword1, avertexattribute, paramif);
 		
-		System.out.println("#v");
+		//输出概览
+		System.out.println("# count");
+		System.out.println("# af.length = " + af.length);
+		System.out.println("# aword0.length = " + aword0.length);
+		System.out.println("# aword1.length = " + aword1.length);
+		System.out.println("# avertexattribute.length = " + avertexattribute.length);
+		System.out.println("");
+
+		//顶点
+		System.out.println("# v");
 		for(i = 0; i < (af.length/5); i++)
 		{
 			System.out.println("v " + af[i*5] + " " + af[i*5+1] + " " + af[i*5+2]);
 		}
-		System.out.println("#vt");
+		System.out.println("");
+
+		//贴图坐标
+		System.out.println("# vt");
 		for(i = 0; i < (af.length/5); i++)
 		{
 			System.out.println("vt " + af[i*5+3] + " " + af[i*5+4]);
 		}
+		System.out.println("");
 
-		System.out.println("#f");
+		//面
+		System.out.println("# f");
 		for(i = 0; i < (aword0.length/3); i++)
 		{
 			System.out.println("f " + (aword0[i*3]+1) + " " + (aword0[i*3+1]+1) + " " + (aword0[i*3+2]+1));
 		}
-		System.out.println("#l");
+		System.out.println("");
+
+		//线
+		System.out.println("# l");
 		for(i = 0; i < (aword1.length/2); i++)
 		{
 			System.out.println("l " + (aword1[i*2]+1) + " " + (aword1[i*2+1]+1));
 		}
+		System.out.println("");
 
+
+		//未知数据
+		System.out.println("# unknow");
+		System.out.println("# avertexattribute data");
+		for(i = 0; i < avertexattribute.length; i++)
+		{
+			System.out.println("# usage = " + avertexattribute[i].usage + " ; numComponents = " + avertexattribute[i].numComponents + " ; alias = " + avertexattribute[i].alias);
+		}
 
 		return;
 
