@@ -1,7 +1,7 @@
 # IngressModelExport
 该代码用于导出ingress中的模型
 
-![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/xmp/out.png)
+![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/img/xmp.png)
 
 起因是我想做一个短片，使用Ae合成手拿INGRESS道具的效果。
 
