@@ -89,11 +89,11 @@ public class Main
 		System.out.println("# Now time is " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) );
 		System.out.println("");
 
-		//基本信息输出
-		System.out.println("# obj info:");
-		System.out.println("# af.length = " + af.length + "\tVertex count: "+ af.length / 5);	//点数据量，格式：顶点坐标x + 顶点坐标y + 顶点坐标z + 贴图坐标x + 贴图坐标y
-		System.out.println("# aword0.length = " + aword0.length + "\tSurface count: "+ aword0.length / 3);	//表面数据量，格式：顶点序号a + 顶点序号b + 顶点序号c
-		System.out.println("# aword1.length = " + aword1.length + "\tLine count: "+ aword1.length / 2);	//线数据量，格式：顶点序号a + 顶点序号b
+		//原始信息输出
+		System.out.println("# ingress obj info:");
+		System.out.println("# af.length = " + af.length);	//点数据量，格式：顶点坐标x + 顶点坐标y + 顶点坐标z + 贴图坐标x + 贴图坐标y
+		System.out.println("# aword0.length = " + aword0.length);	//表面数据量，格式：顶点序号a + 顶点序号b + 顶点序号c
+		System.out.println("# aword1.length = " + aword1.length);	//线数据量，格式：顶点序号a + 顶点序号b
 		System.out.println("# avertexattribute.length = " + avertexattribute.length);
 		for(i = 0; i < avertexattribute.length; i++)
 		{
@@ -105,6 +105,13 @@ public class Main
 				vlen = 8;
 			}
 		}
+		System.out.println("");
+
+		//模型信息输出
+		System.out.println("# obj info:");
+		System.out.println("# Vertex count: "+ af.length / vlen);
+		System.out.println("# Surface count: "+ aword0.length / 3);
+		System.out.println("# Line count: "+ aword1.length / 2);
 		System.out.println("");
 
 		//顶点
