@@ -91,7 +91,7 @@ public class Main
 
 		//原始信息输出
 		System.out.println("# ingress obj info:");
-		System.out.println("# af.length = " + af.length);	//点数据量，格式：顶点坐标x + 顶点坐标y + 顶点坐标z + 贴图坐标x + 贴图坐标y
+		System.out.println("# af.length = " + af.length);	//点数据量，格式：顶点坐标x + 顶点坐标y + 顶点坐标z + 顶点法线x + 顶点法线y + 顶点法线z + 贴图坐标x + 贴图坐标y
 		System.out.println("# aword0.length = " + aword0.length);	//表面数据量，格式：顶点序号a + 顶点序号b + 顶点序号c
 		System.out.println("# aword1.length = " + aword1.length);	//线数据量，格式：顶点序号a + 顶点序号b
 		System.out.println("# avertexattribute.length = " + avertexattribute.length);
@@ -122,24 +122,24 @@ public class Main
 		}
 		System.out.println("");
 
-		//贴图坐标
-		if(vlen >= 5)
-		{
-			System.out.println("# Texture vertices (vt):");
-			for(i = 0; i < (af.length/vlen); i++)
-			{
-				System.out.println("vt " + af[i*vlen+3] + " " + af[i*vlen+4]);
-			}
-			System.out.println("");
-		}
-
 		//顶点法线
 		if(vlen >= 8)
 		{
 			System.out.println("# Vertex normals (vn):");
 			for(i = 0; i < (af.length/vlen); i++)
 			{
-				System.out.println("vn " + af[i*vlen+5] + " " + af[i*vlen+6] + " " + af[i*vlen+7]);
+				System.out.println("vn " + af[i*vlen+3] + " " + af[i*vlen+4] + " " + af[i*vlen+5]);
+			}
+			System.out.println("");
+		}
+
+		//贴图坐标
+		if(vlen >= 5)
+		{
+			System.out.println("# Texture vertices (vt):");
+			for(i = 0; i < (af.length/vlen); i++)
+			{
+				System.out.println("vt " + af[i*vlen+vlen-2] + " " + af[i*vlen+vlen-1]);
 			}
 			System.out.println("");
 		}
