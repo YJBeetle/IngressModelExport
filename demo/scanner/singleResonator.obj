@@ -1,0 +1,85 @@
+# Create by IngressModelExport
+# Develop by YJBeetle
+# Now time is 2017-04-10 04:25:58
+
+# ingress obj info:
+# af.length = 60
+# aword0.length = 24
+# aword1.length = 48
+# avertexattribute.length = 2
+# avertexattribute[0].usage = 1
+# avertexattribute[0].numComponents = 3
+# avertexattribute[0].alias = a_position
+# avertexattribute[1].usage = 16
+# avertexattribute[1].numComponents = 2
+# avertexattribute[1].alias = a_texCoord0
+
+# obj info:
+# Vertex count: 12
+# Surface count: 8
+# Line count: 24
+
+# Geometric vertices (v):
+v 0.074299 0.0 -0.690636
+v 0.706915 0.0 0.07259
+v 0.002977 -1.200948 -0.002521
+v -0.074299 0.0 0.690636
+v -0.706915 0.0 -0.072589
+v 0.074299 0.0 -0.690636
+v 0.074299 0.0 -0.690636
+v -0.706915 0.0 -0.072589
+v -0.002976 1.200948 0.002522
+v -0.074299 0.0 0.690636
+v 0.706915 0.0 0.07259
+v 0.074299 0.0 -0.690636
+
+# Texture vertices (vt):
+vt 0.25 0.5
+vt 0.375 0.5
+vt 0.5 1.0
+vt 0.5 0.5
+vt 0.625 0.5
+vt 0.75 0.5
+vt 0.25 0.5
+vt 0.375 0.5
+vt 0.5 1.0
+vt 0.5 0.5
+vt 0.625 0.5
+vt 0.75 0.5
+
+# Surface (f):
+f 1 2 3
+f 2 4 3
+f 4 5 3
+f 5 6 3
+f 7 8 9
+f 8 10 9
+f 10 11 9
+f 11 12 9
+
+# Line (l):
+l 12 9
+l 10 3
+l 10 8
+l 12 3
+l 11 9
+l 12 11
+l 11 10
+l 11 3
+l 12 9
+l 10 9
+l 11 9
+l 12 3
+l 12 11
+l 10 8
+l 12 8
+l 10 3
+l 8 9
+l 11 3
+l 12 8
+l 8 9
+l 11 10
+l 8 3
+l 10 9
+l 8 3
+
