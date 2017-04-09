@@ -87,9 +87,9 @@ public class Main
 
 		//概览
 		System.out.println("# count");
-		System.out.println("# af.length = " + af.length);
-		System.out.println("# aword0.length = " + aword0.length);
-		System.out.println("# aword1.length = " + aword1.length);
+		System.out.println("# af.length = " + af.length + "\tvertex count: "+ af.length / 5);	//点数据量，格式：顶点x + 顶点y + 顶点z + 贴图顶点x + 贴图顶点y
+		System.out.println("# aword0.length = " + aword0.length + "\tface count: "+ aword0.length / 3);	//面数据量，格式：顶点a + 顶点b + 顶点c
+		System.out.println("# aword1.length = " + aword1.length + "\tline count: "+ aword1.length / 2);	//线数据量，格式：顶点a + 顶点b
 		System.out.println("# avertexattribute.length = " + avertexattribute.length);
 		System.out.println("");
 
