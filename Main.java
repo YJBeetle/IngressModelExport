@@ -24,6 +24,7 @@ public class Main
 		String fileInPath;
 		FileInputStream fileIn;
         int i;
+		int ii;
         boolean flag;
         ObjectInputStream objectinputstream;
         float af[];
@@ -81,9 +82,10 @@ public class Main
 		fileIn.close();
 		
 		//解析准备
-		int vlen = 3;
-		int vtlen = 2;	//默认vt有2个数据
-		int vnlen = 0;	//默认无vn
+		int vlen = 3;	//默认格式
+		int vtlen = 2;
+		int vnlen = 0;
+		String tmpString;
 
 		//输出注释
 		System.out.println("# Create by IngressModelExport");
@@ -102,13 +104,17 @@ public class Main
 			System.out.println("# avertexattribute[" + i + "].usage = " + avertexattribute[i].usage);
 			System.out.println("# avertexattribute[" + i + "].numComponents = " + avertexattribute[i].numComponents);
 			System.out.println("# avertexattribute[" + i + "].alias = " + avertexattribute[i].alias);
-			if(avertexattribute[i].alias.equals("a_normal") && avertexattribute[i].usage == 8)	//存在顶点法线特殊情况处理
+			if(avertexattribute[i].alias.equals("a_position"))	//v
 			{
-				vnlen = 3;
+				vlen = avertexattribute[i].numComponents;
 			}
-			if(avertexattribute[i].alias.equals("a_position") && avertexattribute[i].numComponents == 4)	//xyzw特殊情况处理
+			if(avertexattribute[i].alias.equals("a_texCoord0"))	//vt
 			{
-				vlen = 4;
+				vtlen = avertexattribute[i].numComponents;
+			}
+			if(avertexattribute[i].alias.equals("a_normal"))	//vn
+			{
+				vnlen = avertexattribute[i].numComponents;
 			}
 		}
 		System.out.println("");
@@ -122,12 +128,12 @@ public class Main
 
 		//顶点(v)
 		System.out.println("# Geometric vertices (v):");
-		for(i = 0; i < (af.length/(vlen+vtlen+vnlen)); i++)
+		for(i = 0; i < (af.length / (vlen+vtlen+vnlen)); i++)
 		{
-			if(vlen == 3)
-				System.out.println("v " + af[i*(vlen+vtlen+vnlen)] + " " + af[i*(vlen+vtlen+vnlen)+1] + " " + af[i*(vlen+vtlen+vnlen)+2]);
-			if(vlen == 4)
-				System.out.println("v " + af[i*(vlen+vtlen+vnlen)] + " " + af[i*(vlen+vtlen+vnlen)+1] + " " + af[i*(vlen+vtlen+vnlen)+2] + " " + af[i*(vlen+vtlen+vnlen)+3]);
+			tmpString = "";
+			for(ii = 0; ii < vlen; ii++)
+				tmpString += af[i * (vlen+vtlen+vnlen) + ii] + " ";
+			System.out.println("v " + tmpString);
 		}
 		System.out.println("");
 
@@ -135,12 +141,12 @@ public class Main
 		if(vtlen > 0)
 		{
 			System.out.println("# Texture vertices (vt):");
-			for(i = 0; i < (af.length/(vlen+vtlen+vnlen)); i++)
+			for(i = 0; i < (af.length / (vlen+vtlen+vnlen)); i++)
 			{
-				if(vtlen == 2)
-					System.out.println("vt " + af[i*(vlen+vtlen+vnlen)+vlen+vnlen] + " " + af[i*(vlen+vtlen+vnlen)+vlen+vnlen+1]);
-				if(vtlen == 3)
-					System.out.println("vt " + af[i*(vlen+vtlen+vnlen)+vlen+vnlen] + " " + af[i*(vlen+vtlen+vnlen)+vlen+vnlen+1] + " " + af[i*(vlen+vtlen+vnlen)+vlen+vnlen+2]);
+				tmpString = "";
+				for(ii = 0; ii < vtlen; ii++)
+					tmpString += af[i * (vlen+vtlen+vnlen) + vlen + vnlen + ii] + " ";
+				System.out.println("vt " + tmpString);
 			}
 			System.out.println("");
 		}
@@ -149,9 +155,12 @@ public class Main
 		if(vnlen > 0)
 		{
 			System.out.println("# Vertex normals (vn):");
-			for(i = 0; i < (af.length/(vlen+vtlen+vnlen)); i++)
+			for(i = 0; i < (af.length / (vlen+vtlen+vnlen)); i++)
 			{
-				System.out.println("vn " + af[i*(vlen+vtlen+vnlen)+vlen] + " " + af[i*(vlen+vtlen+vnlen)+vlen+1] + " " + af[i*(vlen+vtlen+vnlen)+vlen+2]);
+				tmpString = "";
+				for(ii = 0; ii < vnlen; ii++)
+					tmpString += af[i * (vlen+vtlen+vnlen) + vlen + ii] + " ";
+				System.out.println("vn " + tmpString);
 			}
 			System.out.println("");
 		}
