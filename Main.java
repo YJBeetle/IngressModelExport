@@ -81,7 +81,9 @@ public class Main
 		fileIn.close();
 		
 		//解析准备
-		int vlen = 5;	//默认一个顶点5个数据
+		int vlen = 3;
+		int vtlen = 2;	//默认vt有2个数据
+		int vnlen = 0;	//默认无vn
 
 		//输出注释
 		System.out.println("# Create by IngressModelExport");
@@ -102,57 +104,67 @@ public class Main
 			System.out.println("# avertexattribute[" + i + "].alias = " + avertexattribute[i].alias);
 			if(avertexattribute[i].alias.equals("a_normal") && avertexattribute[i].usage == 8)	//存在顶点法线特殊情况处理
 			{
-				vlen = 8;
+				vnlen = 3;
+			}
+			if(avertexattribute[i].alias.equals("a_position") && avertexattribute[i].numComponents == 4)	//xyzw特殊情况处理
+			{
+				vlen = 4;
 			}
 		}
 		System.out.println("");
 
 		//模型信息输出
 		System.out.println("# obj info:");
-		System.out.println("# Vertex count: "+ af.length / vlen);
+		System.out.println("# Vertex count: "+ af.length / (vlen+vtlen+vnlen));
 		System.out.println("# Surface count: "+ aword0.length / 3);
 		System.out.println("# Line count: "+ aword1.length / 2);
 		System.out.println("");
 
-		//顶点
+		//顶点(v)
 		System.out.println("# Geometric vertices (v):");
-		for(i = 0; i < (af.length/vlen); i++)
+		for(i = 0; i < (af.length/(vlen+vtlen+vnlen)); i++)
 		{
-			System.out.println("v " + af[i*vlen] + " " + af[i*vlen+1] + " " + af[i*vlen+2]);
+			if(vlen == 3)
+				System.out.println("v " + af[i*(vlen+vtlen+vnlen)] + " " + af[i*(vlen+vtlen+vnlen)+1] + " " + af[i*(vlen+vtlen+vnlen)+2]);
+			if(vlen == 4)
+				System.out.println("v " + af[i*(vlen+vtlen+vnlen)] + " " + af[i*(vlen+vtlen+vnlen)+1] + " " + af[i*(vlen+vtlen+vnlen)+2] + " " + af[i*(vlen+vtlen+vnlen)+3]);
 		}
 		System.out.println("");
 
-		//顶点法线
-		if(vlen >= 8)
-		{
-			System.out.println("# Vertex normals (vn):");
-			for(i = 0; i < (af.length/vlen); i++)
-			{
-				System.out.println("vn " + af[i*vlen+3] + " " + af[i*vlen+4] + " " + af[i*vlen+5]);
-			}
-			System.out.println("");
-		}
-
-		//贴图坐标
-		if(vlen >= 5)
+		//贴图坐标(vt)
+		if(vtlen > 0)
 		{
 			System.out.println("# Texture vertices (vt):");
-			for(i = 0; i < (af.length/vlen); i++)
+			for(i = 0; i < (af.length/(vlen+vtlen+vnlen)); i++)
 			{
-				System.out.println("vt " + af[i*vlen+vlen-2] + " " + af[i*vlen+vlen-1]);
+				if(vtlen == 2)
+					System.out.println("vt " + af[i*(vlen+vtlen+vnlen)+vlen+vnlen] + " " + af[i*(vlen+vtlen+vnlen)+vlen+vnlen+1]);
+				if(vtlen == 3)
+					System.out.println("vt " + af[i*(vlen+vtlen+vnlen)+vlen+vnlen] + " " + af[i*(vlen+vtlen+vnlen)+vlen+vnlen+1] + " " + af[i*(vlen+vtlen+vnlen)+vlen+vnlen+2]);
 			}
 			System.out.println("");
 		}
 
-		//面
+		//顶点法线(vn)
+		if(vnlen > 0)
+		{
+			System.out.println("# Vertex normals (vn):");
+			for(i = 0; i < (af.length/(vlen+vtlen+vnlen)); i++)
+			{
+				System.out.println("vn " + af[i*(vlen+vtlen+vnlen)+vlen] + " " + af[i*(vlen+vtlen+vnlen)+vlen+1] + " " + af[i*(vlen+vtlen+vnlen)+vlen+2]);
+			}
+			System.out.println("");
+		}
+
+		//面(f)
 		System.out.println("# Surface (f):");
 		for(i = 0; i < (aword0.length/3); i++)
 		{
-			if(vlen >= 8)
+			if(vtlen > 0 && vnlen > 0)
 			{
 				System.out.println("f " + (aword0[i*3]+1) + "/" + (aword0[i*3]+1) + "/" + (aword0[i*3]+1) + " " + (aword0[i*3+1]+1) + "/" + (aword0[i*3+1]+1) + "/" + (aword0[i*3+1]+1) + " " + (aword0[i*3+2]+1) + "/" + (aword0[i*3+2]+1) + "/" + (aword0[i*3+2]+1));
 			}
-			else if(vlen >= 5)
+			else if(vtlen > 0 && vnlen == 0)
 			{
 				System.out.println("f " + (aword0[i*3]+1) + "/" + (aword0[i*3]+1) + " " + (aword0[i*3+1]+1) + "/" + (aword0[i*3+1]+1) + " " + (aword0[i*3+2]+1) + "/" + (aword0[i*3+2]+1));
 			}
@@ -163,7 +175,7 @@ public class Main
 		}
 		System.out.println("");
 
-		//线
+		//线(l)
 		System.out.println("# Line (l):");
 		for(i = 0; i < (aword1.length/2); i++)
 		{
