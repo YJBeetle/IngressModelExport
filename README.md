@@ -13,18 +13,18 @@
 
 ps：本来想写Makefile的……（逃）
 
-##编译：
+#编译：
 javac Main.java
 
-##运行：
+#运行：
 java Main ingress_obj/1.112.0_android_apk/scanner/interestCapsuleResource.obj > a.obj
 
-##效果图：
+#效果图：
 ![](https://github.com/YJBeetle/ingress_obj_reader/raw/master/demo/img/E948CD1C-4024-4F32-AB03-137156229EB5.png)
 
 ![](https://github.com/YJBeetle/ingress_obj_reader/raw/master/demo/img/F1DA3AB1-2EEB-420C-BAFB-03A8A5EF653C.png)
 
-##某中间痛苦猜结构过程：
+#某中间痛苦猜结构过程：
 先是吧顶点数据全部塞进去效果如图
 
 ![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/img/CA8E10EC-0DAB-4998-9500-33DFB3AF13E6.png)
@@ -45,7 +45,7 @@ java Main ingress_obj/1.112.0_android_apk/scanner/interestCapsuleResource.obj > 
 
 猜对了
 
-##某无聊的截图：
+#某无聊的截图：
 为何有这么多人好奇脚的模型啥样子……（你们都是脚控么？）
 
 ![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/img/5C207686-18BA-4011-8255-BB5143467696.png)
@@ -74,9 +74,12 @@ java Main ingress_obj/1.112.0_android_apk/scanner/interestCapsuleResource.obj > 
 
 ![](https://github.com/YJBeetle/IngressModelExport/raw/master/demo/img/CEE64625-A5B0-4734-99C1-D5C601B288A5.png)
 
-##最后
+#贴图：
+研究一晚上，@zhiyb猜想Texture vertices序号和Geometric vertices序号（以及后来才发现有的模型还有的Vertex normals）可能是一样的。然后实验证明正确。所以只需要在surface中写上一样的Texture vertices序号就可以了。
+
+所以现在程序导出的模型是带有正确的uv数据的，所以自己贴图上去吧，scanner的大部分模型贴图应该都是genericModTexture.png，不过Y轴需要翻转一下。
+
+Ingress巧妙的设计，不同模型贴图顶点坐标的巧妙利用，实现不同模型用同一个贴图。
+
+#最后：
 某些c4d文件也直接上传了，可以直接编辑。
-
-然后关于贴图。我在apk里没有找到道具的贴图，po的贴图link的贴图倒是有的，png。
-
-猜测它没有贴图直接在程序里给材质上色了。有谁找到贴图的话，留个言什么的吧~在找到办法之前就手动上色吧（逃……）。
