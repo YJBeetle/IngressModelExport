@@ -4,6 +4,7 @@ import java.util.*;
 
 import java.text.SimpleDateFormat;
 
+import javax.xml.bind.annotation.XmlNs;
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
@@ -263,6 +264,8 @@ public class Main
 
 			//开始
 			Element COLLADA = document.createElement("COLLADA");
+			COLLADA.setAttribute("xmlns", "http://www.collada.org/2005/11/COLLADASchema");
+			COLLADA.setAttribute("version", "1.4.1");
 			document.appendChild(COLLADA);
 
 				Element asset = document.createElement("asset");
@@ -278,10 +281,19 @@ public class Main
 					Element created = document.createElement("created");
 					created.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
 					asset.appendChild(created);
-					
+
 					Element modified = document.createElement("modified");
 					modified.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
 					asset.appendChild(modified);
+
+					Element unit = document.createElement("unit");
+					unit.setAttribute("meter", "0.01");
+					unit.setAttribute("name", "centimeter");
+					asset.appendChild(unit);
+
+					Element up_axis = document.createElement("up_axis");
+					up_axis.appendChild(document.createTextNode("Y_UP"));
+					asset.appendChild(up_axis);
 
 			//输出字符串
 			Source source = new DOMSource(document);
