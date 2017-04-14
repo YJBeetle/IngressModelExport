@@ -276,7 +276,7 @@ public class Main
 					asset.appendChild(contributor);
 
 						Element authoring_tool = document.createElement("authoring_tool");
-						authoring_tool.appendChild(document.createTextNode("IngressModelExport"));
+						authoring_tool.appendChild(document.createTextNode("IngressModelExport Develop by YJBeetle"));
 						contributor.appendChild(authoring_tool);
 
 					Element created = document.createElement("created");
@@ -304,6 +304,79 @@ public class Main
 					up_axis.appendChild(document.createTextNode("Y_UP"));
 					asset.appendChild(up_axis);
 
+				Element library_images = document.createElement("library_images");
+				COLLADA.appendChild(library_images);
+
+					Element image = document.createElement("image");
+					image.setAttribute("id", "genericModTexture_image");
+					library_images.appendChild(image);
+
+						Element init_from = document.createElement("init_from");
+						init_from.appendChild(document.createTextNode("genericModTexture.png"));
+						image.appendChild(init_from);
+
+				Element library_effects = document.createElement("library_effects");
+				COLLADA.appendChild(library_effects);
+
+					Element effect = document.createElement("effect");
+					effect.setAttribute("id", "genericModTexture_effect");
+					library_effects.appendChild(effect);
+
+						Element profile_COMMON = document.createElement("profile_COMMON");
+						effect.appendChild(profile_COMMON);
+
+							Element newparam1 = document.createElement("newparam");
+							newparam1.setAttribute("sid", "genericModTexture_newparam1");
+							profile_COMMON.appendChild(newparam1);
+
+								Element surface = document.createElement("surface");
+								surface.setAttribute("type", "2D");
+								newparam1.appendChild(surface);
+
+									Element init_from2 = document.createElement("init_from");
+									init_from2.appendChild(document.createTextNode("genericModTexture_image"));
+									surface.appendChild(init_from2);
+							
+							Element newparam2 = document.createElement("newparam");
+							newparam2.setAttribute("sid", "genericModTexture_newparam2");
+							profile_COMMON.appendChild(newparam2);
+
+								Element sampler2D = document.createElement("sampler2D");
+								newparam2.appendChild(sampler2D);
+
+									Element source2 = document.createElement("source");
+									source2.appendChild(document.createTextNode("genericModTexture_newparam1"));
+									sampler2D.appendChild(source2);
+
+							Element technique = document.createElement("technique");
+							technique.setAttribute("sid", "COMMON");
+							profile_COMMON.appendChild(technique);
+
+								Element blinn = document.createElement("blinn");
+								technique.appendChild(blinn);
+								
+									Element diffuse = document.createElement("diffuse");
+									blinn.appendChild(diffuse);
+
+										Element texture = document.createElement("texture");
+										texture.setAttribute("texture", "genericModTexture_newparam2");
+										texture.setAttribute("texcoord", "UVSET0");
+										diffuse.appendChild(texture);
+
+				Element library_materials = document.createElement("library_materials");
+				COLLADA.appendChild(library_materials);
+
+					Element material = document.createElement("material");
+					material.setAttribute("id", "genericModTexture");
+					material.setAttribute("name", "genericModTexture");
+					library_materials.appendChild(material);
+						
+						Element instance_effect = document.createElement("instance_effect");
+						instance_effect.setAttribute("url", "#genericModTexture_effect");
+						material.appendChild(instance_effect);
+
+				Element library_geometries = document.createElement("library_geometries");
+				COLLADA.appendChild(library_geometries);
 
 			//输出字符串
 			Source source = new DOMSource(document);
