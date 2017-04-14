@@ -266,19 +266,29 @@ public class Main
 
 			//面(f)
 			fileOutText += "# Surface (f):" + "\n";
-			for(i = 0; i < (aword0.length/3); i++)
+			for(i = 0; i < aword0.length; i++)
 			{
-				if(vtlen > 0 && vnlen > 0)
+				if(i % 3 == 0)
 				{
-					fileOutText += "f " + (aword0[i*3]+1) + "/" + (aword0[i*3]+1) + "/" + (aword0[i*3]+1) + " " + (aword0[i*3+1]+1) + "/" + (aword0[i*3+1]+1) + "/" + (aword0[i*3+1]+1) + " " + (aword0[i*3+2]+1) + "/" + (aword0[i*3+2]+1) + "/" + (aword0[i*3+2]+1) + "\n";
+					fileOutText += "f";
 				}
-				else if(vtlen > 0 && vnlen == 0)
+				fileOutText += " " + (aword0[i]+1);
+				if(vtlen > 0 || vnlen > 0)
 				{
-					fileOutText += "f " + (aword0[i*3]+1) + "/" + (aword0[i*3]+1) + " " + (aword0[i*3+1]+1) + "/" + (aword0[i*3+1]+1) + " " + (aword0[i*3+2]+1) + "/" + (aword0[i*3+2]+1) + "\n";
+					fileOutText += "/";
+					if(vtlen > 0)
+					{
+						fileOutText += (aword0[i]+1);
+					}
+					if(vnlen > 0)
+					{
+						fileOutText += "/";
+						fileOutText += (aword0[i]+1);
+					}
 				}
-				else
+				if((i+1) % 3 == 0)
 				{
-					fileOutText += "f " + (aword0[i*3]+1) + " " + (aword0[i*3+1]+1) + " " + (aword0[i*3+2]+1) + "\n";
+					fileOutText += "\n";
 				}
 			}
 			fileOutText += "\n";
