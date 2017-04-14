@@ -148,13 +148,12 @@ public class Main
 			int vlen = 3;	//默认格式
 			int vtlen = 2;
 			int vnlen = 0;
-			String tmpString;
 
 			//输出注释
 			fileOutText += "# Create by IngressModelExport" + "\n";
 			fileOutText += "# Develop by YJBeetle" + "\n";
 			fileOutText += "# Now time is " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n";
-			fileOutText += "" + "\n";
+			fileOutText += "\n";
 
 			//原始信息输出
 			fileOutText += "# ingress obj info:" + "\n";
@@ -180,25 +179,25 @@ public class Main
 					vnlen = avertexattribute[i].numComponents;
 				}
 			}
-			fileOutText += "" + "\n";
+			fileOutText += "\n";
 
 			//模型信息输出
 			fileOutText += "# obj info:" + "\n";
 			fileOutText += "# Vertex count: "+ af.length / (vlen+vtlen+vnlen) + "\n";
 			fileOutText += "# Surface count: "+ aword0.length / 3 + "\n";
 			fileOutText += "# Line count: "+ aword1.length / 2 + "\n";
-			fileOutText += "" + "\n";
+			fileOutText += "\n";
 
 			//顶点(v)
 			fileOutText += "# Geometric vertices (v):" + "\n";
 			for(i = 0; i < (af.length / (vlen+vtlen+vnlen)); i++)
 			{
-				tmpString = "";
+				fileOutText += "v";
 				for(ii = 0; ii < vlen; ii++)
-					tmpString += af[i * (vlen+vtlen+vnlen) + ii] + " ";
-				fileOutText += "v " + tmpString + "\n";
+					fileOutText += " " + af[i * (vlen+vtlen+vnlen) + ii];
+				fileOutText += "\n";
 			}
-			fileOutText += "" + "\n";
+			fileOutText += "\n";
 
 			//贴图坐标(vt)
 			if(vtlen > 0)
@@ -206,12 +205,12 @@ public class Main
 				fileOutText += "# Texture vertices (vt):" + "\n";
 				for(i = 0; i < (af.length / (vlen+vtlen+vnlen)); i++)
 				{
-					tmpString = "";
+					fileOutText += "vt";
 					for(ii = 0; ii < vtlen; ii++)
-						tmpString += af[i * (vlen+vtlen+vnlen) + vlen + vnlen + ii] + " ";
-					fileOutText += "vt " + tmpString + "\n";
+						fileOutText += " " + af[i * (vlen+vtlen+vnlen) + vlen + vnlen + ii];
+					fileOutText += "\n";
 				}
-				fileOutText += "" + "\n";
+				fileOutText += "\n";
 			}
 
 			//顶点法线(vn)
@@ -220,12 +219,12 @@ public class Main
 				fileOutText += "# Vertex normals (vn):" + "\n";
 				for(i = 0; i < (af.length / (vlen+vtlen+vnlen)); i++)
 				{
-					tmpString = "";
+					fileOutText += "vn";
 					for(ii = 0; ii < vnlen; ii++)
-						tmpString += af[i * (vlen+vtlen+vnlen) + vlen + ii] + " ";
-					fileOutText += "vn " + tmpString + "\n";
+						fileOutText += " " + af[i * (vlen+vtlen+vnlen) + vlen + ii];
+					fileOutText += "\n";
 				}
-				fileOutText += "" + "\n";
+				fileOutText += "\n";
 			}
 
 			//面(f)
@@ -245,7 +244,7 @@ public class Main
 					fileOutText += "f " + (aword0[i*3]+1) + " " + (aword0[i*3+1]+1) + " " + (aword0[i*3+2]+1) + "\n";
 				}
 			}
-			fileOutText += "" + "\n";
+			fileOutText += "\n";
 
 			//线(l)
 			fileOutText += "# Line (l):" + "\n";
@@ -253,7 +252,7 @@ public class Main
 			{
 				fileOutText += "l " + (aword1[i*2]+1) + " " + (aword1[i*2+1]+1) + "\n";
 			}
-			fileOutText += "" + "\n";
+			fileOutText += "\n";
 		}
 		else if(fileType == FileType.dae)	//拼接dae
 		{
