@@ -255,32 +255,35 @@ public class Main
 		}
 		else if(fileType == FileType.dae)	//拼接dae
 		{
+			//准备
 			Document document = null;
-
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			document = builder.newDocument();
 
+			//开始
 			Element COLLADA = document.createElement("COLLADA");
 			document.appendChild(COLLADA);
-			Element asset = document.createElement("asset");
 
-			Element contributor = document.createElement("contributor");
-			asset.appendChild(contributor);
+				Element asset = document.createElement("asset");
+				COLLADA.appendChild(asset);
 
-			Element authoring_tool = document.createElement("authoring_tool");
-			authoring_tool.appendChild(document.createTextNode("IngressModelExport"));
-			contributor.appendChild(authoring_tool);
+					Element contributor = document.createElement("contributor");
+					asset.appendChild(contributor);
 
-			Element created = document.createElement("created");
-			created.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
-			asset.appendChild(created);
-			Element modified = document.createElement("modified");
-			modified.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
-			asset.appendChild(modified);
+						Element authoring_tool = document.createElement("authoring_tool");
+						authoring_tool.appendChild(document.createTextNode("IngressModelExport"));
+						contributor.appendChild(authoring_tool);
 
-			COLLADA.appendChild(asset);
+					Element created = document.createElement("created");
+					created.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
+					asset.appendChild(created);
+					
+					Element modified = document.createElement("modified");
+					modified.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
+					asset.appendChild(modified);
 
+			//输出字符串
 			Source source = new DOMSource(document);
             StringWriter stringWriter = new StringWriter();
             Result result = new StreamResult(stringWriter);
