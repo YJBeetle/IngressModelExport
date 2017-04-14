@@ -279,11 +279,11 @@ public class Main
 						contributor.appendChild(authoring_tool);
 
 					Element created = document.createElement("created");
-					created.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
+					created.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(new Date())));
 					asset.appendChild(created);
 
 					Element modified = document.createElement("modified");
-					modified.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
+					modified.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(new Date())));
 					asset.appendChild(modified);
 
 					Element unit = document.createElement("unit");
