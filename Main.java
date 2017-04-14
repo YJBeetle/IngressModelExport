@@ -4,6 +4,14 @@ import java.util.*;
 
 import java.text.SimpleDateFormat;
 
+import javax.xml.parsers.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.InputSource;
+
 public class Main
 {
 	public static final class VertexAttribute
@@ -247,12 +255,41 @@ public class Main
 		}
 		else if(fileType == FileType.dae)	//拼接dae
 		{
-			//文件头
-			fileOutText += "<?xml version=\"1.0\"?>\n";
-			fileOutText += "<COLLADA xmlns=\"http://www.collada.org/2005/11/COLLADASchema\" version=\"1.4.1\">\n";
+			Document document = null;
 
-			//结尾
-			fileOutText += "</COLLADA>\n";
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			document = builder.newDocument();
+
+			Element COLLADA = document.createElement("COLLADA");
+			document.appendChild(COLLADA);
+			Element asset = document.createElement("asset");
+
+			Element contributor = document.createElement("contributor");
+			asset.appendChild(contributor);
+
+			Element authoring_tool = document.createElement("authoring_tool");
+			authoring_tool.appendChild(document.createTextNode("IngressModelExport"));
+			contributor.appendChild(authoring_tool);
+
+			Element created = document.createElement("created");
+			created.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
+			asset.appendChild(created);
+			Element modified = document.createElement("modified");
+			modified.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
+			asset.appendChild(modified);
+
+			COLLADA.appendChild(asset);
+
+			Source source = new DOMSource(document);
+            StringWriter stringWriter = new StringWriter();
+            Result result = new StreamResult(stringWriter);
+            TransformerFactory tf = TransformerFactory.newInstance();
+            Transformer transformer = tf.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+            transformer.transform(source, result);
+            fileOutText += stringWriter.getBuffer().toString();
 		}
 
 		//输出
