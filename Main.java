@@ -291,6 +291,10 @@ public class Main
 					keywords.appendChild(document.createTextNode("ingress " + fileInPath.replaceAll(".*[/\\\\]", "").replaceAll("\\..*", "") ));
 					asset.appendChild(keywords);
 
+					Element title = document.createElement("title");
+					title.appendChild(document.createTextNode(fileInPath.replaceAll(".*[/\\\\]", "").replaceAll("\\..*", "")));
+					asset.appendChild(title);
+					
 					Element unit = document.createElement("unit");
 					unit.setAttribute("meter", "0.01");
 					unit.setAttribute("name", "centimeter");
@@ -299,6 +303,7 @@ public class Main
 					Element up_axis = document.createElement("up_axis");
 					up_axis.appendChild(document.createTextNode("Y_UP"));
 					asset.appendChild(up_axis);
+
 
 			//输出字符串
 			Source source = new DOMSource(document);
