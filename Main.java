@@ -31,7 +31,7 @@ public class Main
 		int ii;
 		String fileInPath = null;
 		String fileOutPath = null;
-		FileType fileType = null;
+		FileType fileType = FileType.obj;
 
 		//args处理
 		if(args.length <= 0)
@@ -62,8 +62,6 @@ public class Main
 					fileType = FileType.obj;
 				else if(args[i+1].equalsIgnoreCase("dae"))
 					fileType = FileType.dae;
-				else
-					fileType = FileType.obj;
 				i++;
 			}
 			else if(fileInPath == null)
