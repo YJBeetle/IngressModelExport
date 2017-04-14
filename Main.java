@@ -2,8 +2,6 @@
 import java.io.*;
 import java.util.*;
 
-import javax.net.ssl.ExtendedSSLSession;
-
 import java.text.SimpleDateFormat;
 
 public class Main
