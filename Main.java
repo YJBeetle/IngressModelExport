@@ -1,6 +1,7 @@
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.*;
 
 import java.text.SimpleDateFormat;
 
@@ -285,6 +286,10 @@ public class Main
 					Element modified = document.createElement("modified");
 					modified.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(new Date())));
 					asset.appendChild(modified);
+
+					Element keywords = document.createElement("keywords");
+					keywords.appendChild(document.createTextNode("ingress " + fileInPath.replaceAll(".*[/\\\\]", "").replaceAll("\\..*", "") ));
+					asset.appendChild(keywords);
 
 					Element unit = document.createElement("unit");
 					unit.setAttribute("meter", "0.01");
