@@ -140,49 +140,77 @@ public class Main
         objectinputstream.close();
 		fileIn.close();
 
+		//解析
+		int vlen = 0;
+		int vtlen = 0;
+		int vnlen = 0;
+		float [] v = null;
+		float [] vt = null;
+		float [] vn = null;
+        short [] f = null;
+        short [] l = null;
+
+		//读取v/vt/vn分别的位数
+		for(i = 0; i < avertexattribute.length; i++)
+		{
+			if(avertexattribute[i].alias.equals("a_position"))	//v
+			{
+				vlen = avertexattribute[i].numComponents;
+			}
+			if(avertexattribute[i].alias.equals("a_texCoord0"))	//vt
+			{
+				vtlen = avertexattribute[i].numComponents;
+			}
+			if(avertexattribute[i].alias.equals("a_normal"))	//vn
+			{
+				vnlen = avertexattribute[i].numComponents;
+			}
+		}
+
+		v = new float[af.length / (vlen+vtlen+vnlen) * vlen];
+		vt = new float[af.length / (vlen+vtlen+vnlen) * vtlen];
+		vn = new float[af.length / (vlen+vtlen+vnlen) * vnlen];
+		f = aword0;
+		l = aword1;
+
+		//读取具体点数据
+		for(i = 0; i < (af.length / (vlen+vtlen+vnlen)); i++)
+		{
+			for(ii = 0; ii < vlen; ii++)
+				v[i*vlen + ii] = af[i * (vlen+vtlen+vnlen) + ii];
+			for(ii = 0; ii < vtlen; ii++)
+				vt[i*vtlen + ii] = af[i * (vlen+vtlen+vnlen) + vlen + vnlen + ii];
+			for(ii = 0; ii < vnlen; ii++)
+				vn[i*vnlen + ii] = af[i * (vlen+vtlen+vnlen) + vlen + ii];
+		}
+
 		//拼接
 		String fileOutText = "";
 		if(fileType == FileType.obj)	//拼接为obj
 		{
-			//准备
-			int vlen = 3;	//默认格式
-			int vtlen = 2;
-			int vnlen = 0;
-
-			//输出注释
+			//输出头注释
 			fileOutText += "# Create by IngressModelExport" + "\n";
 			fileOutText += "# Develop by YJBeetle" + "\n";
-			fileOutText += "# Now time is " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n";
+			fileOutText += "# Model name: " + fileInPath.replaceAll(".*[/\\\\]", "").replaceAll("\\..*", "") + "\n";
+			fileOutText += "# Created: " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n";
 			fileOutText += "\n";
 
 			//原始信息输出
-			fileOutText += "# ingress obj info:" + "\n";
-			fileOutText += "# af.length = " + af.length + "\n";	//点数据量，格式：顶点坐标x + 顶点坐标y + 顶点坐标z + 顶点法线x + 顶点法线y + 顶点法线z + 贴图坐标x + 贴图坐标y
-			fileOutText += "# aword0.length = " + aword0.length + "\n";	//表面数据量，格式：顶点序号a + 顶点序号b + 顶点序号c
-			fileOutText += "# aword1.length = " + aword1.length + "\n";	//线数据量，格式：顶点序号a + 顶点序号b
+			fileOutText += "# Ingress obj info:" + "\n";
+			fileOutText += "# af.length = " + af.length + "\n";	//点数据量
+			fileOutText += "# aword0.length = " + aword0.length + "\n";	//面数据量
+			fileOutText += "# aword1.length = " + aword1.length + "\n";	//线数据量
 			fileOutText += "# avertexattribute.length = " + avertexattribute.length + "\n";
 			for(i = 0; i < avertexattribute.length; i++)
 			{
 				fileOutText += "# avertexattribute[" + i + "].usage = " + avertexattribute[i].usage + "\n";
 				fileOutText += "# avertexattribute[" + i + "].numComponents = " + avertexattribute[i].numComponents + "\n";
 				fileOutText += "# avertexattribute[" + i + "].alias = " + avertexattribute[i].alias + "\n";
-				if(avertexattribute[i].alias.equals("a_position"))	//v
-				{
-					vlen = avertexattribute[i].numComponents;
-				}
-				if(avertexattribute[i].alias.equals("a_texCoord0"))	//vt
-				{
-					vtlen = avertexattribute[i].numComponents;
-				}
-				if(avertexattribute[i].alias.equals("a_normal"))	//vn
-				{
-					vnlen = avertexattribute[i].numComponents;
-				}
 			}
 			fileOutText += "\n";
 
-			//模型信息输出
-			fileOutText += "# obj info:" + "\n";
+			//模型基本信息输出
+			fileOutText += "# Model info:" + "\n";
 			fileOutText += "# Vertex count: "+ af.length / (vlen+vtlen+vnlen) + "\n";
 			fileOutText += "# Surface count: "+ aword0.length / 3 + "\n";
 			fileOutText += "# Line count: "+ aword1.length / 2 + "\n";
@@ -190,42 +218,51 @@ public class Main
 
 			//顶点(v)
 			fileOutText += "# Geometric vertices (v):" + "\n";
-			for(i = 0; i < (af.length / (vlen+vtlen+vnlen)); i++)
+			for(i = 0; i < v.length; i++)
 			{
-				fileOutText += "v";
-				for(ii = 0; ii < vlen; ii++)
-					fileOutText += " " + af[i * (vlen+vtlen+vnlen) + ii];
-				fileOutText += "\n";
+				if(i % vlen == 0)
+				{
+					fileOutText += "v";
+				}
+				fileOutText += " " + v[i];
+				if((i+1) % vlen == 0)
+				{
+					fileOutText += "\n";
+				}
 			}
 			fileOutText += "\n";
 
 			//贴图坐标(vt)
-			if(vtlen > 0)
+			fileOutText += "# Texture vertices (vt):" + "\n";
+			for(i = 0; i < vt.length; i++)
 			{
-				fileOutText += "# Texture vertices (vt):" + "\n";
-				for(i = 0; i < (af.length / (vlen+vtlen+vnlen)); i++)
+				if(i % vtlen == 0)
 				{
 					fileOutText += "vt";
-					for(ii = 0; ii < vtlen; ii++)
-						fileOutText += " " + af[i * (vlen+vtlen+vnlen) + vlen + vnlen + ii];
+				}
+				fileOutText += " " + vt[i];
+				if((i+1) % vtlen == 0)
+				{
 					fileOutText += "\n";
 				}
-				fileOutText += "\n";
 			}
+			fileOutText += "\n";
 
 			//顶点法线(vn)
-			if(vnlen > 0)
+			fileOutText += "# Vertex normals (vn):" + "\n";
+			for(i = 0; i < vn.length; i++)
 			{
-				fileOutText += "# Vertex normals (vn):" + "\n";
-				for(i = 0; i < (af.length / (vlen+vtlen+vnlen)); i++)
+				if(i % vnlen == 0)
 				{
 					fileOutText += "vn";
-					for(ii = 0; ii < vnlen; ii++)
-						fileOutText += " " + af[i * (vlen+vtlen+vnlen) + vlen + ii];
+				}
+				fileOutText += " " + vn[i];
+				if((i+1) % vnlen == 0)
+				{
 					fileOutText += "\n";
 				}
-				fileOutText += "\n";
 			}
+			fileOutText += "\n";
 
 			//面(f)
 			fileOutText += "# Surface (f):" + "\n";
