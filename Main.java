@@ -31,6 +31,73 @@ public class Main
 	public enum FileType {
 		obj, dae;
 	}
+	
+	public static String ArrayImplode(String [] array, String separator)
+	{
+		String out = "";
+		for(int i = 0; i < array.length; i++)
+		{
+			out += array[i];
+			if(i+1 < array.length)
+				out += separator;
+		}
+		return out;
+	}
+
+	public static String ArrayImplode(String [] array)
+	{
+		return ArrayImplode(array, " ");
+	}
+
+	public static String ArrayImplode(float [] array, String separator)
+	{
+		String out = "";
+		for(int i = 0; i < array.length; i++)
+		{
+			out += String.valueOf(array[i]);
+			if(i+1 < array.length)
+				out += separator;
+		}
+		return out;
+	}
+
+	public static String ArrayImplode(float [] array)
+	{
+		return ArrayImplode(array, " ");
+	}
+	public static String ArrayImplode(int [] array, String separator)
+	{
+		String out = "";
+		for(int i = 0; i < array.length; i++)
+		{
+			out += String.valueOf(array[i]);
+			if(i+1 < array.length)
+				out += separator;
+		}
+		return out;
+	}
+
+	public static String ArrayImplode(int [] array)
+	{
+		return ArrayImplode(array, " ");
+	}
+
+	public static String ArrayImplode(short [] array, String separator)
+	{
+		String out = "";
+		for(int i = 0; i < array.length; i++)
+		{
+			out += String.valueOf(array[i]);
+			if(i+1 < array.length)
+				out += separator;
+		}
+		return out;
+	}
+
+	public static String ArrayImplode(short [] array)
+	{
+		return ArrayImplode(array, " ");
+	}
 
 	public static void main(String [] args) throws Exception
 	{
@@ -304,6 +371,7 @@ public class Main
 		else if(fileType == FileType.dae)	//拼接dae
 		{
 			//准备
+			String tmpstring;
 			Document document = null;
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
@@ -311,9 +379,9 @@ public class Main
 
 			//开始
 			Element COLLADA = document.createElement("COLLADA");
+			document.appendChild(COLLADA);
 			COLLADA.setAttribute("xmlns", "http://www.collada.org/2005/11/COLLADASchema");
 			COLLADA.setAttribute("version", "1.4.1");
-			document.appendChild(COLLADA);
 
 				Element asset = document.createElement("asset");
 				COLLADA.appendChild(asset);
@@ -322,81 +390,81 @@ public class Main
 					asset.appendChild(contributor);
 
 						Element authoring_tool = document.createElement("authoring_tool");
-						authoring_tool.appendChild(document.createTextNode("IngressModelExport Develop by YJBeetle"));
 						contributor.appendChild(authoring_tool);
+						authoring_tool.appendChild(document.createTextNode("IngressModelExport Develop by YJBeetle"));
 
 					Element created = document.createElement("created");
-					created.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(new Date())));
 					asset.appendChild(created);
+					created.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(new Date())));
 
 					Element modified = document.createElement("modified");
-					modified.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(new Date())));
 					asset.appendChild(modified);
+					modified.appendChild(document.createTextNode(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(new Date())));
 
 					Element keywords = document.createElement("keywords");
-					keywords.appendChild(document.createTextNode("ingress " + fileInPath.replaceAll(".*[/\\\\]", "").replaceAll("\\..*", "") ));
 					asset.appendChild(keywords);
+					keywords.appendChild(document.createTextNode("ingress " + fileInPath.replaceAll(".*[/\\\\]", "").replaceAll("\\..*", "") ));
 
 					Element title = document.createElement("title");
-					title.appendChild(document.createTextNode(fileInPath.replaceAll(".*[/\\\\]", "").replaceAll("\\..*", "")));
 					asset.appendChild(title);
+					title.appendChild(document.createTextNode(fileInPath.replaceAll(".*[/\\\\]", "").replaceAll("\\..*", "")));
 					
 					Element unit = document.createElement("unit");
+					asset.appendChild(unit);
 					unit.setAttribute("meter", "0.01");
 					unit.setAttribute("name", "centimeter");
-					asset.appendChild(unit);
 
 					Element up_axis = document.createElement("up_axis");
-					up_axis.appendChild(document.createTextNode("Y_UP"));
 					asset.appendChild(up_axis);
+					up_axis.appendChild(document.createTextNode("Y_UP"));
 
 				Element library_images = document.createElement("library_images");
 				COLLADA.appendChild(library_images);
 
 					Element image = document.createElement("image");
-					image.setAttribute("id", "genericModTexture_image");
 					library_images.appendChild(image);
+					image.setAttribute("id", "genericModTexture_image");
 
 						Element init_from = document.createElement("init_from");
-						init_from.appendChild(document.createTextNode("genericModTexture.png"));
 						image.appendChild(init_from);
+						init_from.appendChild(document.createTextNode("genericModTexture.png"));
 
 				Element library_effects = document.createElement("library_effects");
 				COLLADA.appendChild(library_effects);
 
 					Element effect = document.createElement("effect");
-					effect.setAttribute("id", "genericModTexture_effect");
 					library_effects.appendChild(effect);
+					effect.setAttribute("id", "genericModTexture_effect");
 
 						Element profile_COMMON = document.createElement("profile_COMMON");
 						effect.appendChild(profile_COMMON);
 
 							Element newparam1 = document.createElement("newparam");
-							newparam1.setAttribute("sid", "genericModTexture_newparam1");
 							profile_COMMON.appendChild(newparam1);
+							newparam1.setAttribute("sid", "genericModTexture_newparam1");
 
 								Element surface = document.createElement("surface");
-								surface.setAttribute("type", "2D");
 								newparam1.appendChild(surface);
+								surface.setAttribute("type", "2D");
 
 									Element init_from2 = document.createElement("init_from");
-									init_from2.appendChild(document.createTextNode("genericModTexture_image"));
 									surface.appendChild(init_from2);
+									init_from2.appendChild(document.createTextNode("genericModTexture_image"));
 							
 							Element newparam2 = document.createElement("newparam");
-							newparam2.setAttribute("sid", "genericModTexture_newparam2");
 							profile_COMMON.appendChild(newparam2);
+							newparam2.setAttribute("sid", "genericModTexture_newparam2");
 
 								Element sampler2D = document.createElement("sampler2D");
 								newparam2.appendChild(sampler2D);
 
 									Element source2 = document.createElement("source");
-									source2.appendChild(document.createTextNode("genericModTexture_newparam1"));
 									sampler2D.appendChild(source2);
+									source2.appendChild(document.createTextNode("genericModTexture_newparam1"));
 
 							Element technique = document.createElement("technique");
-							technique.setAttribute("sid", "COMMON");
 							profile_COMMON.appendChild(technique);
+							technique.setAttribute("sid", "COMMON");
 
 								Element blinn = document.createElement("blinn");
 								technique.appendChild(blinn);
@@ -405,35 +473,254 @@ public class Main
 									blinn.appendChild(diffuse);
 
 										Element texture = document.createElement("texture");
+										diffuse.appendChild(texture);
 										texture.setAttribute("texture", "genericModTexture_newparam2");
 										texture.setAttribute("texcoord", "UVSET0");
-										diffuse.appendChild(texture);
 
 				Element library_materials = document.createElement("library_materials");
 				COLLADA.appendChild(library_materials);
 
 					Element material = document.createElement("material");
+					library_materials.appendChild(material);
 					material.setAttribute("id", "genericModTexture");
 					material.setAttribute("name", "genericModTexture");
-					library_materials.appendChild(material);
 						
 						Element instance_effect = document.createElement("instance_effect");
-						instance_effect.setAttribute("url", "#genericModTexture_effect");
 						material.appendChild(instance_effect);
+						instance_effect.setAttribute("url", "#genericModTexture_effect");
 
 				Element library_geometries = document.createElement("library_geometries");
 				COLLADA.appendChild(library_geometries);
 
 					Element geometry = document.createElement("geometry");
-					geometry.setAttribute("id", "geometry");
 					library_geometries.appendChild(geometry);
+					geometry.setAttribute("id", "geometry");
 
 						Element mesh = document.createElement("mesh");
 						geometry.appendChild(mesh);
 
-							Element source3 = document.createElement("source");
-							geometry.setAttribute("id", "geometry_v");
-							mesh.appendChild(source3);
+							if(vlen > 0)
+							{
+								Element source_v = document.createElement("source");
+								mesh.appendChild(source_v);
+								source_v.setAttribute("id", "source_v");
+
+									Element float_array_v = document.createElement("float_array");
+									source_v.appendChild(float_array_v);
+									float_array_v.setAttribute("id", "float_array_v");
+									float_array_v.setAttribute("count", String.valueOf(v.length));
+									float_array_v.appendChild(document.createTextNode(ArrayImplode(v)));
+
+									Element technique_common_v = document.createElement("technique_common");
+									source_v.appendChild(technique_common_v);
+
+										Element accessor_v = document.createElement("accessor");
+										technique_common_v.appendChild(accessor_v);
+										accessor_v.setAttribute("count", String.valueOf(v.length / vlen));
+										accessor_v.setAttribute("source", "#float_array_v");
+										accessor_v.setAttribute("stride", String.valueOf(vlen));
+										
+											Element [] param_v = new Element[vlen];
+											for(i = 0; i < vlen; i++)
+											{
+												param_v[i] = document.createElement("param");
+												accessor_v.appendChild(param_v[i]);
+												param_v[i].setAttribute("name", String.valueOf(i));
+												param_v[i].setAttribute("type", "float");
+											}
+							}
+
+							if(vnlen > 0)
+							{
+								Element source_vn = document.createElement("source");
+								mesh.appendChild(source_vn);
+								source_vn.setAttribute("id", "source_vn");
+
+									Element float_array_vn = document.createElement("float_array");
+									source_vn.appendChild(float_array_vn);
+									float_array_vn.setAttribute("id", "float_array_vn");
+									float_array_vn.setAttribute("count", String.valueOf(vn.length));
+									float_array_vn.appendChild(document.createTextNode(ArrayImplode(vn)));
+
+									Element technique_common_vn = document.createElement("technique_common");
+									source_vn.appendChild(technique_common_vn);
+
+										Element accessor_vn = document.createElement("accessor");
+										technique_common_vn.appendChild(accessor_vn);
+										accessor_vn.setAttribute("count", String.valueOf(vn.length / vnlen));
+										accessor_vn.setAttribute("source", "#float_array_vn");
+										accessor_vn.setAttribute("stride", String.valueOf(vnlen));
+										
+											Element [] param_vn = new Element[vnlen];
+											for(i = 0; i < vnlen; i++)
+											{
+												param_vn[i] = document.createElement("param");
+												accessor_vn.appendChild(param_vn[i]);
+												param_vn[i].setAttribute("name", String.valueOf(i));
+												param_vn[i].setAttribute("type", "float");
+											}
+							}
+
+							if(vtlen > 0)
+							{
+								Element source_vt = document.createElement("source");
+								mesh.appendChild(source_vt);
+								source_vt.setAttribute("id", "source_vt");
+
+									Element float_array_vt = document.createElement("float_array");
+									source_vt.appendChild(float_array_vt);
+									float_array_vt.setAttribute("id", "float_array_vt");
+									float_array_vt.setAttribute("count", String.valueOf(vt.length));
+									float_array_vt.appendChild(document.createTextNode(ArrayImplode(vt)));
+
+									Element technique_common_vt = document.createElement("technique_common");
+									source_vt.appendChild(technique_common_vt);
+
+										Element accessor_vt = document.createElement("accessor");
+										technique_common_vt.appendChild(accessor_vt);
+										accessor_vt.setAttribute("count", String.valueOf(vt.length / vtlen));
+										accessor_vt.setAttribute("source", "#float_array_vt");
+										accessor_vt.setAttribute("stride", String.valueOf(vtlen));
+										
+											Element [] param_vt = new Element[vtlen];
+											for(i = 0; i < vtlen; i++)
+											{
+												param_vt[i] = document.createElement("param");
+												accessor_vt.appendChild(param_vt[i]);
+												param_vt[i].setAttribute("name", String.valueOf(i));
+												param_vt[i].setAttribute("type", "float");
+											}
+							}
+
+							Element vertices = document.createElement("vertices");
+							mesh.appendChild(vertices);
+							vertices.setAttribute("id", "vertices");
+
+								Element vertices_input = document.createElement("input");
+								vertices.appendChild(vertices_input);
+								vertices_input.setAttribute("semantic", "POSITION");
+								vertices_input.setAttribute("source", "#source_v");
+
+							Element polylist = document.createElement("polylist");
+							mesh.appendChild(polylist);
+							polylist.setAttribute("count", String.valueOf(f.length / 3));
+							polylist.setAttribute("material", "Material1");
+
+								if(vlen > 0)
+								{
+									Element polylist_input1 = document.createElement("input");
+									polylist.appendChild(polylist_input1);
+									polylist_input1.setAttribute("offset", "0");
+									polylist_input1.setAttribute("semantic", "VERTEX");
+									polylist_input1.setAttribute("source", "#vertices");
+								}
+
+								if(vnlen > 0)
+								{
+									Element polylist_input2 = document.createElement("input");
+									polylist.appendChild(polylist_input2);
+									polylist_input2.setAttribute("offset", "1");
+									polylist_input2.setAttribute("semantic", "NORMAL");
+									polylist_input2.setAttribute("source", "#source_vn");
+								}
+
+								if(vtlen > 0)
+								{
+									Element polylist_input3 = document.createElement("input");
+									polylist.appendChild(polylist_input3);
+									polylist_input3.setAttribute("offset", "2");
+									polylist_input3.setAttribute("semantic", "TEXCOORD");
+									polylist_input3.setAttribute("source", "#source_vt");
+									polylist_input3.setAttribute("set", "0");
+								}
+
+								Element vcount = document.createElement("vcount");
+								polylist.appendChild(vcount);
+								tmpstring = "";
+								for(i = 0; i < f.length / 3; i++)
+								{
+									tmpstring += "3";
+									if(i+1 < f.length / 3)
+										tmpstring += " ";
+								}
+								vcount.appendChild(document.createTextNode(tmpstring));
+
+								Element polylist_p = document.createElement("p");
+								polylist.appendChild(polylist_p);
+								tmpstring = "";
+								for(i = 0; i < f.length; i++)
+								{
+									tmpstring += String.valueOf(f[i]) + " " + String.valueOf(f[i]) + " " + String.valueOf(f[i]);
+									if(i+1 < f.length)
+										tmpstring += " ";
+								}
+								polylist_p.appendChild(document.createTextNode(tmpstring));
+   
+				Element library_visual_scenes = document.createElement("library_visual_scenes");
+				COLLADA.appendChild(library_visual_scenes);
+
+					Element visual_scene = document.createElement("visual_scene");
+					library_visual_scenes.appendChild(visual_scene);
+					visual_scene.setAttribute("id", "visual_scene");
+
+						Element node = document.createElement("node");
+						visual_scene.appendChild(node);
+						node.setAttribute("name", "Default");
+						node.setAttribute("id", "node");
+
+							Element translate = document.createElement("translate");
+							node.appendChild(translate);
+							translate.setAttribute("sid", "translate");
+							translate.appendChild(document.createTextNode("0 0 -0"));
+
+							Element rotate1 = document.createElement("rotate");
+							node.appendChild(rotate1);
+							rotate1.setAttribute("sid", "rotateY");
+							rotate1.appendChild(document.createTextNode("0 1 0 -0"));
+
+							Element rotate2 = document.createElement("rotate");
+							node.appendChild(rotate2);
+							rotate2.setAttribute("sid", "rotateX");
+							rotate2.appendChild(document.createTextNode("1 0 0 0"));
+
+							Element rotate3 = document.createElement("rotate");
+							node.appendChild(rotate3);
+							rotate3.setAttribute("sid", "rotateZ");
+							rotate3.appendChild(document.createTextNode("0 0 1 -0"));
+
+							Element scale = document.createElement("scale");
+							node.appendChild(scale);
+							scale.setAttribute("sid", "scale");
+							scale.appendChild(document.createTextNode("1 1 1"));
+
+							Element instance_geometry = document.createElement("instance_geometry");
+							node.appendChild(instance_geometry);
+							instance_geometry.setAttribute("url", "#geometry");
+
+								Element bind_material = document.createElement("bind_material");
+								instance_geometry.appendChild(bind_material);
+
+									Element technique_common = document.createElement("technique_common");
+									bind_material.appendChild(technique_common);
+
+										Element instance_material = document.createElement("instance_material");
+										technique_common.appendChild(instance_material);
+										instance_material.setAttribute("symbol", "Material1");
+										instance_material.setAttribute("target", "#genericModTexture");
+
+											Element bind_vertex_input = document.createElement("bind_vertex_input");
+											instance_material.appendChild(bind_vertex_input);
+											bind_vertex_input.setAttribute("semantic", "UVSET0");
+											bind_vertex_input.setAttribute("input_semantic", "TEXCOORD");
+											bind_vertex_input.setAttribute("input_set", "0");
+
+				Element scene = document.createElement("scene");
+				COLLADA.appendChild(scene);
+
+					Element instance_visual_scene = document.createElement("instance_visual_scene");
+					scene.appendChild(instance_visual_scene);
+					instance_visual_scene.setAttribute("url", "#visual_scene");
+
 
 			//输出字符串
 			Source source = new DOMSource(document);
