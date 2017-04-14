@@ -266,24 +266,24 @@ public class Main
 
 			//面(f)
 			fileOutText += "# Surface (f):" + "\n";
-			for(i = 0; i < aword0.length; i++)
+			for(i = 0; i < f.length; i++)
 			{
 				if(i % 3 == 0)
 				{
 					fileOutText += "f";
 				}
-				fileOutText += " " + (aword0[i]+1);
+				fileOutText += " " + (f[i]+1);
 				if(vtlen > 0 || vnlen > 0)
 				{
 					fileOutText += "/";
 					if(vtlen > 0)
 					{
-						fileOutText += (aword0[i]+1);
+						fileOutText += (f[i]+1);
 					}
 					if(vnlen > 0)
 					{
 						fileOutText += "/";
-						fileOutText += (aword0[i]+1);
+						fileOutText += (f[i]+1);
 					}
 				}
 				if((i+1) % 3 == 0)
@@ -295,9 +295,9 @@ public class Main
 
 			//线(l)
 			fileOutText += "# Line (l):" + "\n";
-			for(i = 0; i < (aword1.length/2); i++)
+			for(i = 0; i < (l.length/2); i++)
 			{
-				fileOutText += "l " + (aword1[i*2]+1) + " " + (aword1[i*2+1]+1) + "\n";
+				fileOutText += "l " + (l[i*2]+1) + " " + (l[i*2+1]+1) + "\n";
 			}
 			fileOutText += "\n";
 		}
