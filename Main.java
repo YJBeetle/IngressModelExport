@@ -245,7 +245,16 @@ public class Main
 		fileOutText += "" + "\n";
 
 		//输出
-		System.out.println(fileOutText);
+		if(fileOutPath == null)
+		{
+			System.out.println(fileOutText);
+		}
+		else
+		{
+			FileOutputStream fileOut = new FileOutputStream(fileOutPath);
+            fileOut.write(fileOutText.getBytes());
+			fileOut.close();
+		}
 
 		return;
 
