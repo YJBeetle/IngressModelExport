@@ -13,7 +13,7 @@
 
 ps：本来想写Makefile的……（逃）
 
-#编译：
+## 编译：
 javac Main.java
 
 #运行：
