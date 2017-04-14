@@ -17,7 +17,7 @@ ps：本来想写Makefile的……（逃）
 javac Main.java
 
 #运行：
-java Main ingress_obj/1.112.0_android_apk/scanner/interestCapsuleResource.obj > a.obj
+java Main ingress_obj/1.112.0_android_apk/scanner/interestCapsuleResource.obj -o a.obj
 
 #效果图：
 ![](https://github.com/YJBeetle/ingress_obj_reader/raw/master/demo/img/E948CD1C-4024-4F32-AB03-137156229EB5.png)
