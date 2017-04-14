@@ -378,6 +378,17 @@ public class Main
 				Element library_geometries = document.createElement("library_geometries");
 				COLLADA.appendChild(library_geometries);
 
+					Element geometry = document.createElement("geometry");
+					geometry.setAttribute("id", "geometry");
+					library_geometries.appendChild(geometry);
+
+						Element mesh = document.createElement("mesh");
+						geometry.appendChild(mesh);
+
+							Element source3 = document.createElement("source");
+							geometry.setAttribute("id", "geometry_v");
+							mesh.appendChild(source3);
+
 			//输出字符串
 			Source source = new DOMSource(document);
             StringWriter stringWriter = new StringWriter();
