@@ -1,6 +1,9 @@
 
 import java.io.*;
 import java.util.*;
+
+import javax.net.ssl.ExtendedSSLSession;
+
 import java.text.SimpleDateFormat;
 
 public class Main
@@ -17,14 +20,70 @@ public class Main
 			this.alias = alias;
 		}
 	}
+	public enum FileType {
+		obj, dae;
+	}
 
 	public static void main(String [] args) throws Exception
 	{
-		//开始读取数据
-		String fileInPath;
-		FileInputStream fileIn;
+		//init
         int i;
 		int ii;
+		String fileInPath = null;
+		String fileOutPath = null;
+		FileType fileType = null;
+
+		//args处理
+		if(args.length <= 0)
+		{
+			System.out.println("error: No input file\nsee --help");
+			return;
+		}
+		for(i = 0; i < args.length; i++)
+		{
+			if(args[i].equals("-h") || args[i].equals("--help"))
+			{
+				System.out.println("help");
+				return;
+			}
+			else if(args[i].equals("-i") || args[i].equals("--input"))
+			{
+				fileInPath = args[i+1];
+				i++;
+			}
+			else if(args[i].equals("-o") || args[i].equals("--output"))
+			{
+				fileOutPath = args[i+1];
+				i++;
+			}
+			else if(args[i].equals("-t") || args[i].equals("--type"))
+			{
+				if(args[i+1].equalsIgnoreCase("obj"))
+					fileType = FileType.obj;
+				else if(args[i+1].equalsIgnoreCase("dae"))
+					fileType = FileType.dae;
+				else
+					fileType = FileType.obj;
+				i++;
+			}
+			else if(fileInPath == null)
+			{
+				fileInPath = args[i];
+			}
+			else if(fileOutPath == null)
+			{
+				fileOutPath = args[i];
+			}
+		}
+
+		if(fileInPath == null)
+		{
+			System.out.println("error: No input file\nsee --help");
+			return;
+		}
+
+		//开始读取数据
+		FileInputStream fileIn;
         boolean flag;
         ObjectInputStream objectinputstream;
         float af[];
@@ -37,15 +96,9 @@ public class Main
 
         try
         {
-			if(args.length <= 0)
-			{
-				System.out.println("# Create error: No input file");
-				return;
-			}
-			fileInPath = args[0];
 			if(!new File(fileInPath).exists())
 			{
-				System.out.println("# Create error: File does not exist");
+				System.out.println("error: File does not exist");
 				return;
 			}
 			fileIn = new FileInputStream(fileInPath);
