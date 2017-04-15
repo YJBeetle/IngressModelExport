@@ -31,73 +31,6 @@ public class Main
 	public enum FileType {
 		obj, dae;
 	}
-	
-	public static String ArrayImplode(String [] array, String separator)
-	{
-		String out = "";
-		for(int i = 0; i < array.length; i++)
-		{
-			out += array[i];
-			if(i+1 < array.length)
-				out += separator;
-		}
-		return out;
-	}
-
-	public static String ArrayImplode(String [] array)
-	{
-		return ArrayImplode(array, " ");
-	}
-
-	public static String ArrayImplode(float [] array, String separator)
-	{
-		String out = "";
-		for(int i = 0; i < array.length; i++)
-		{
-			out += String.valueOf(array[i]);
-			if(i+1 < array.length)
-				out += separator;
-		}
-		return out;
-	}
-
-	public static String ArrayImplode(float [] array)
-	{
-		return ArrayImplode(array, " ");
-	}
-	public static String ArrayImplode(int [] array, String separator)
-	{
-		String out = "";
-		for(int i = 0; i < array.length; i++)
-		{
-			out += String.valueOf(array[i]);
-			if(i+1 < array.length)
-				out += separator;
-		}
-		return out;
-	}
-
-	public static String ArrayImplode(int [] array)
-	{
-		return ArrayImplode(array, " ");
-	}
-
-	public static String ArrayImplode(short [] array, String separator)
-	{
-		String out = "";
-		for(int i = 0; i < array.length; i++)
-		{
-			out += String.valueOf(array[i]);
-			if(i+1 < array.length)
-				out += separator;
-		}
-		return out;
-	}
-
-	public static String ArrayImplode(short [] array)
-	{
-		return ArrayImplode(array, " ");
-	}
 
 	public static void main(String [] args) throws Exception
 	{
@@ -372,6 +305,7 @@ public class Main
 		{
 			//准备
 			String tmpstring;
+			int [] tmpintArray;
 			Document document = null;
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
@@ -509,7 +443,7 @@ public class Main
 									source_v.appendChild(float_array_v);
 									float_array_v.setAttribute("id", "float_array_v");
 									float_array_v.setAttribute("count", String.valueOf(v.length));
-									float_array_v.appendChild(document.createTextNode(ArrayImplode(v)));
+									float_array_v.appendChild(document.createTextNode(Arrays.toString(v).replaceAll("[\\,\\[\\]]", "")));
 
 									Element technique_common_v = document.createElement("technique_common");
 									source_v.appendChild(technique_common_v);
@@ -540,7 +474,7 @@ public class Main
 									source_vn.appendChild(float_array_vn);
 									float_array_vn.setAttribute("id", "float_array_vn");
 									float_array_vn.setAttribute("count", String.valueOf(vn.length));
-									float_array_vn.appendChild(document.createTextNode(ArrayImplode(vn)));
+									float_array_vn.appendChild(document.createTextNode(Arrays.toString(vn).replaceAll("[\\,\\[\\]]", "")));
 
 									Element technique_common_vn = document.createElement("technique_common");
 									source_vn.appendChild(technique_common_vn);
@@ -571,7 +505,7 @@ public class Main
 									source_vt.appendChild(float_array_vt);
 									float_array_vt.setAttribute("id", "float_array_vt");
 									float_array_vt.setAttribute("count", String.valueOf(vt.length));
-									float_array_vt.appendChild(document.createTextNode(ArrayImplode(vt)));
+									float_array_vt.appendChild(document.createTextNode(Arrays.toString(vt).replaceAll("[\\,\\[\\]]", "")));
 
 									Element technique_common_vt = document.createElement("technique_common");
 									source_vt.appendChild(technique_common_vt);
@@ -636,14 +570,9 @@ public class Main
 
 								Element vcount = document.createElement("vcount");
 								polylist.appendChild(vcount);
-								tmpstring = "";
-								for(i = 0; i < f.length / 3; i++)
-								{
-									tmpstring += "3";
-									if(i+1 < f.length / 3)
-										tmpstring += " ";
-								}
-								vcount.appendChild(document.createTextNode(tmpstring));
+								tmpintArray = new int[f.length / 3];
+								Arrays.fill(tmpintArray, 3);
+								vcount.appendChild(document.createTextNode(Arrays.toString(tmpintArray).replaceAll("[\\,\\[\\]]", "")));
 
 								Element polylist_p = document.createElement("p");
 								polylist.appendChild(polylist_p);
