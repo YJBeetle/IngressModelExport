@@ -304,7 +304,7 @@ public class Main
 		else if(fileType == FileType.dae)	//拼接dae
 		{
 			//准备
-			String tmpstring;
+			String tmpString;
 			int [] tmpintArray;
 			Document document = null;
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -457,9 +457,27 @@ public class Main
 											Element [] param_v = new Element[vlen];
 											for(i = 0; i < vlen; i++)
 											{
+												switch(i)
+												{
+													case 0:
+														tmpString = "X";
+														break;
+													case 1:
+														tmpString = "Y";
+														break;
+													case 2:
+														tmpString = "Z";
+														break;
+													case 3:
+														tmpString = "W";
+														break;
+													default:
+														tmpString = String.valueOf(i);
+														break;
+												}
 												param_v[i] = document.createElement("param");
 												accessor_v.appendChild(param_v[i]);
-												param_v[i].setAttribute("name", String.valueOf(i));
+												param_v[i].setAttribute("name", tmpString);
 												param_v[i].setAttribute("type", "float");
 											}
 							}
@@ -488,9 +506,24 @@ public class Main
 											Element [] param_vn = new Element[vnlen];
 											for(i = 0; i < vnlen; i++)
 											{
+												switch(i)
+												{
+													case 0:
+														tmpString = "X";
+														break;
+													case 1:
+														tmpString = "Y";
+														break;
+													case 2:
+														tmpString = "Z";
+														break;
+													default:
+														tmpString = String.valueOf(i);
+														break;
+												}
 												param_vn[i] = document.createElement("param");
 												accessor_vn.appendChild(param_vn[i]);
-												param_vn[i].setAttribute("name", String.valueOf(i));
+												param_vn[i].setAttribute("name", tmpString);
 												param_vn[i].setAttribute("type", "float");
 											}
 							}
@@ -519,9 +552,21 @@ public class Main
 											Element [] param_vt = new Element[vtlen];
 											for(i = 0; i < vtlen; i++)
 											{
+												switch(i)
+												{
+													case 0:
+														tmpString = "S";
+														break;
+													case 1:
+														tmpString = "T";
+														break;
+													default:
+														tmpString = String.valueOf(i);
+														break;
+												}
 												param_vt[i] = document.createElement("param");
 												accessor_vt.appendChild(param_vt[i]);
-												param_vt[i].setAttribute("name", String.valueOf(i));
+												param_vt[i].setAttribute("name", tmpString);
 												param_vt[i].setAttribute("type", "float");
 											}
 							}
@@ -540,32 +585,36 @@ public class Main
 							polylist.setAttribute("count", String.valueOf(f.length / 3));
 							polylist.setAttribute("material", "Material1");
 
+								i = 0;
 								if(vlen > 0)
 								{
 									Element polylist_input1 = document.createElement("input");
 									polylist.appendChild(polylist_input1);
-									polylist_input1.setAttribute("offset", "0");
+									polylist_input1.setAttribute("offset", String.valueOf(i));
 									polylist_input1.setAttribute("semantic", "VERTEX");
 									polylist_input1.setAttribute("source", "#vertices");
+									i++;
 								}
 
 								if(vnlen > 0)
 								{
 									Element polylist_input2 = document.createElement("input");
 									polylist.appendChild(polylist_input2);
-									polylist_input2.setAttribute("offset", "1");
+									polylist_input2.setAttribute("offset", String.valueOf(i));
 									polylist_input2.setAttribute("semantic", "NORMAL");
 									polylist_input2.setAttribute("source", "#source_vn");
+									i++;
 								}
 
 								if(vtlen > 0)
 								{
 									Element polylist_input3 = document.createElement("input");
 									polylist.appendChild(polylist_input3);
-									polylist_input3.setAttribute("offset", "2");
+									polylist_input3.setAttribute("offset", String.valueOf(i));
 									polylist_input3.setAttribute("semantic", "TEXCOORD");
 									polylist_input3.setAttribute("source", "#source_vt");
 									polylist_input3.setAttribute("set", "0");
+									i++;
 								}
 
 								Element vcount = document.createElement("vcount");
@@ -576,14 +625,25 @@ public class Main
 
 								Element polylist_p = document.createElement("p");
 								polylist.appendChild(polylist_p);
-								tmpstring = "";
+								tmpString = "";
 								for(i = 0; i < f.length; i++)
 								{
-									tmpstring += String.valueOf(f[i]) + " " + String.valueOf(f[i]) + " " + String.valueOf(f[i]);
+									if(vlen > 0)
+									{
+										tmpString += String.valueOf(f[i]) + " ";
+									}
+									if(vnlen > 0)
+									{
+										tmpString += String.valueOf(f[i]) + " ";
+									}
+									if(vtlen > 0)
+									{
+										tmpString += String.valueOf(f[i]);
+									}
 									if(i+1 < f.length)
-										tmpstring += " ";
+										tmpString += " ";
 								}
-								polylist_p.appendChild(document.createTextNode(tmpstring));
+								polylist_p.appendChild(document.createTextNode(tmpString));
    
 				Element library_visual_scenes = document.createElement("library_visual_scenes");
 				COLLADA.appendChild(library_visual_scenes);
